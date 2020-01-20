@@ -1,5 +1,5 @@
 <?php
-namespace App\Helpers;
+namespace Application\Helpers;
 /**
  * Created by PhpStorm.
  * User: rick

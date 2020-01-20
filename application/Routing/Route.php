@@ -11,6 +11,7 @@ namespace Application\Routing;
 class Route
 {
     private static function add($request_type, $uri, $controller) {
+
         $GLOBALS['routes'][$request_type][] = [
             'uri' => $uri,
             'controller' => $controller
@@ -22,6 +23,6 @@ class Route
     }
 
     public static function post($uri, $controller) {
-        return self::add('GET', $uri, $controller);
+        return self::add('POST', $uri, $controller);
     }
 }

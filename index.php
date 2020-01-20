@@ -22,4 +22,5 @@ $GLOBALS['routes'] = [
 require_once 'application/autoload.php';
 require_once 'application/routes.php';
 
+
 echo Router::dispatch();

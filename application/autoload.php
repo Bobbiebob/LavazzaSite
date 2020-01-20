@@ -18,6 +18,7 @@ class Autoloader
         array_shift($parts);
         $path = APPDIR . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, $parts) . '.php';
         if (!file_exists($path)) {
+            var_dump($path);
             throw new Exception('Namespacing or classname is invalid.');
         }
         require $path;
