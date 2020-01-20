@@ -1,6 +1,9 @@
 <?php
 namespace Application\Controllers;
-use App\Helpers\View;
+use Application\Helpers\Auth;
+use Application\Helpers\Redirect;
+use Application\Helpers\Session;
+use Application\Helpers\View;
 
 /**
  * Created by PhpStorm.
@@ -9,11 +12,53 @@ use App\Helpers\View;
  * Time: 10:55
  */
 
-class AuthController
+class AuthController extends BaseController
 {
 
     public function getIndex() {
         return View::get('auth.index');
+    }
+
+    public function getLogout() {
+        Auth::logout();
+        Redirect::to('/');
+    }
+
+    public function postAuthenticate() {
+
+        if($_POST['email'] == 'password@password.it') {
+            echo 'Generated: ' . Auth::hash($_POST['password']);
+            exit();
+        }
+
+        // validation
+        $validate = [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+
+        $niceNames = [
+            'password' => 'E-mail address',
+            'email' => 'Password'
+        ];
+
+        $this->validate($_POST, $validate, $niceNames);
+
+        if (Auth::attempt([
+            'email' => $_POST['email'],
+            'password' => $_POST['password']
+        ])) {
+            $to = '/dashboard';
+            if(Session::get('origin')) {
+                $to = Session::get('origin');
+                Session::destroy('origin');
+            }
+            Redirect::to($to);
+        }
+
+        Session::set('error', 'Ongeldige inloggegevens.');
+        Session::set('input', $_POST);
+        Redirect::to('/');
     }
 
     public function getView($param) {

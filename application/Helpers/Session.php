@@ -6,7 +6,7 @@
  * Time: 11:47
  */
 
-namespace App\Helpers;
+namespace Application\Helpers;
 
 
 class Session

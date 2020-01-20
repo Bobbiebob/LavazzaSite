@@ -9,4 +9,9 @@
 use Application\Routing\Route;
 
 Route::get('', 'AuthController@getIndex');
+Route::post('', 'AuthController@postAuthenticate');
+Route::get('logout', 'AuthController@getLogout');
+
+Route::get('dashboard', 'DashboardController@getIndex');
+
 Route::get('view/{param}', 'AuthController@getView');
