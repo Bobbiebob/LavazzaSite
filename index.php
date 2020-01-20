@@ -14,7 +14,10 @@ define('BASEDIR', __DIR__ . DIRECTORY_SEPARATOR);
 define('APPDIR', BASEDIR . 'application' . DIRECTORY_SEPARATOR);
 define('CONFIGDIR', BASEDIR . 'config' . DIRECTORY_SEPARATOR);
 
-$GLOBALS['routes'] = [];
+$GLOBALS['routes'] = [
+    'GET' => [],
+    'POST' => []
+];
 
 require_once 'application/autoload.php';
 require_once 'application/routes.php';
