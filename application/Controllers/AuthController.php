@@ -15,6 +15,12 @@ use Application\Helpers\View;
 class AuthController extends BaseController
 {
 
+    public function __construct()
+    {
+        // Redirect to /dashboard if logged in
+        $this->requireAuth();
+    }
+
     public function getIndex() {
         return View::get('auth.index');
     }
