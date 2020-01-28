@@ -12,7 +12,6 @@
     <title>Lavazza Weather App</title>
 </head>
 <body>
-
     <div class="container mt-2">
         <div class="row justify-content-center align-items-center text-center p-2">
                 <?php require __DIR__ . '/../partials/messages.php'; ?>

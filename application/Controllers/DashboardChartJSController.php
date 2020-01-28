@@ -11,7 +11,7 @@ namespace Application\Controllers;
 
 use Application\Helpers\Auth;
 
-class DashboardController extends BaseController
+class DashboardChartJSController extends BaseController
 {
 
     public function __construct()
@@ -22,7 +22,7 @@ class DashboardController extends BaseController
     public function getIndex() {
         echo 'Welcome, ' . Auth::user()['first_name'] . ' ' . Auth::user()['last_name'] . '!<br />';
         return 'You are logged in! <a href="/logout">Click here to log out</a>';
-
+        
     }
 
 }
