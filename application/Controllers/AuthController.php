@@ -18,7 +18,9 @@ class AuthController extends BaseController
     public function __construct()
     {
         // Redirect to /dashboard if logged in
-        $this->requireAuth();
+        if(Auth::check()) {
+            Redirect::to('/dashboard');
+        }
     }
 
     public function getIndex() {

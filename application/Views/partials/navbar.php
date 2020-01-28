@@ -7,17 +7,34 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav" >
+
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <label style="padding-top: 0.5em;" class="form-switch">
+                    <input class="darkmode-toggle" type="checkbox">
+                    <i></i>
+                </label>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/colombia' ? 'active' : '');?>" href="/dashboard/colombia">Data on Colombia</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/europe' ? 'active' : '');?>" href="/dashboard/europe">Data on Europe</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/map' ? 'active' : '');?>" href="/dashboard/map">Map</a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Acount
+                    Bongiorno, <?=Application\Helpers\Auth::user()['first_name'];?>!
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Name</a>
-                    <a class="dropdown-item" href="#">Acount settings</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="#">Account settings</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
             </li>
         </ul>
