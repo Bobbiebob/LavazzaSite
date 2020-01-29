@@ -22,4 +22,4 @@ Route::get('api/graph/{station}/{key}', 'APIController@getGraphData');
 Route::get('api/all_current_data', 'APIController@getCurrentData');
 Route::get('api/all_data/{station}', 'APIController@getAllData');
 
-Route::get('view/{param}', 'AuthController@getView');
+Route::get('exporter/select', 'ExportController@getSelect');

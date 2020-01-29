@@ -110,13 +110,7 @@
             </div>
         </div>
 
-        <hr />
-        <div class="row">
-            <div class="col-12">
-                <p class="float-left">Version 1.0</p>
-                <p class="float-right">Made with <span style="color: red";>&hearts;</span> by SunInHome B.V.</p>
-            </div>
-        </div>
+        <?php include __DIR__ . '/../partials/footer.php'; ?>
 
     </div>
 
@@ -135,10 +129,15 @@
                 "ajax": '/api/all_current_data'
             });
 
+            // TODO: look into reloading without DT re-sorting
+            // setInterval(function () {
+            //     table.ajax.reload();
+            // }, 10000);
+
             $("#query").on("change paste keyup", function(e) {
                 e.preventDefault();
                 var value = $(this).val();
-                table.search(value).draw();
+                table.search(value).draw(false);
             });
 
             // Toggle columns
@@ -199,14 +198,24 @@
                     xAxes: [{
                         type: 'time',
                         time: {
-                            unit: 'month'
+                            displayFormats: {
+                                'millisecond': 'H:mm',
+                                'second': 'H:mm',
+                                'minute': 'H:mm',
+                                'hour': 'H:mm',
+                                'day': 'H:mm',
+                                'week': 'H:mm',
+                                'month': 'H:mm',
+                                'quarter': 'H:mm',
+                                'year': 'H:mm',
+                            }
                         }
                     }],
                     yAxes: [{
                         display: true,
                         ticks: {
-                            // min: -5,
-                            // max: 60,
+                            min: -5,
+                            max: 30,
                             stepSize: 5
                         },
                         scaleLabel: {

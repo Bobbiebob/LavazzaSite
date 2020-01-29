@@ -24,8 +24,9 @@ class APIController extends BaseController
         ];
 
         $data = [];
-        $reference = time();
+        $reference = time() - 14400;
         foreach($datapoints as $point) {
+            $point = 15;
             $diff = rand(1, 5);
             if(rand(0, 1) == 1) {
                 $diff = $diff*-1;
@@ -128,18 +129,23 @@ class APIController extends BaseController
 
         $data = [];
 
+        $fake = 0;
+//        if(date('m') % 2 == 0) {
+//            $fake = 1337;
+//        }
+
         foreach($query->fetchAll() as $station) {
             $countries[] = $station['country'];
             $row = [
                 $station['country'] . ', ' . $station['name'],
-                '0 bar',
-                '0 bar',
-                '0 °C',
-                '0 °C',
-                '0 km',
-                '0 km/h',
-                '0 mm',
-                '0 mm',
+                $fake . ' bar',
+                $fake . ' bar',
+                $fake . ' °C',
+                $fake . ' °C',
+                $fake . ' km',
+                $fake . ' km/h',
+                $fake . ' mm',
+                $fake . ' mm',
             ];
 
             $data[] = $row;

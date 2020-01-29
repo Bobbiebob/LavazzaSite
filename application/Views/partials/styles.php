@@ -4,10 +4,48 @@
     }
 
     body.darkmode {
-        background: #636e72 !important;
+        background: #222 !important;
     }
 
     .dataTables_length, .dataTables_filter { display: none; }
+
+    .darkmode .card {
+        background-color: #999 !important;
+        color: #fff;
+        border-color: #303030 !important;
+    }
+
+    .darkmode .text-muted {
+        color: #222 !important;
+    }
+
+    .darkmode .card .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #444;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        color: #fff;
+    }
+
+    .darkmode .footer {
+        color: #fff;
+    }
+
+    #logo-lavazza-extended {
+        height: 8.5vh;
+        fill: #0a2d4b;
+    }
+
+    .darkmode #logo-lavazza-extended {
+        fill: rgba(255,255,255,.5);
+    }
+
+    svg text {
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+    }
 
     .form-switch i {
         position: relative;

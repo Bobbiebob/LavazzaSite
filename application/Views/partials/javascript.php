@@ -25,12 +25,20 @@
     }
 
     function darkMode() {
-        var darkMode = getCookie('darkmode');
+        var darkMode = localStorage.getItem('darkmode');
 
         if(darkMode == 'on') {
             $('body').addClass('darkmode');
+            $('.navbar').addClass('navbar-light').removeClass('bg-light');
+            $('.navbar').addClass('navbar-dark').addClass('bg-dark');
+            $('.darkmode-toggle').prop('checked', true);
+            // Chart.defaults.global.defaultFontColor = "#fff";
         } else {
             $('body').removeClass('darkmode');
+            $('.navbar').removeClass('navbar-dark').removeClass('bg-dark');
+            $('.navbar').addClass('navbar-light').addClass('bg-light');
+            $('.darkmode-toggle').prop('checked', false);
+            // Chart.defaults.global.defaultFontColor = "#666";
         }
     }
     darkMode();
@@ -40,11 +48,12 @@
 
         if($(this).is(':checked')) {
             // Turn on
-            document.cookie = "darkmode=on";
-
+            // document.cookie = "darkmode=on";
+            localStorage.setItem('darkmode', 'on');
         } else {
             // Turn off
-            document.cookie = "darkmode=off";
+            // document.cookie = "darkmode=off";
+            localStorage.removeItem('darkmode');
         }
 
         darkMode();

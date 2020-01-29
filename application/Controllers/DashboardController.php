@@ -10,6 +10,7 @@ namespace Application\Controllers;
 
 
 use Application\Helpers\Auth;
+use Application\Helpers\DB;
 use Application\Helpers\Redirect;
 use Application\Helpers\View;
 
@@ -32,7 +33,30 @@ class DashboardController extends BaseController
         return View::get('Dashboard.dashboardChartJS');
     }
     public function getMap() {
-        return View::get('Dashboard.map');
+
+        $db = new DB;
+        $query = $db->select()
+            ->table('stations');
+        $db->whereOperator(DB::OR);
+
+        $db->where('stn', '=', '10080');
+        /*
+         *     cy: 459;
+    cx: 255;
+         */
+        $db->where('stn', '=', '160590');
+        $db->where('stn', '=', '103130');
+        $db->where('stn', '=', '156091');
+
+        $db->where('stn', '=', '80001');
+        $db->where('stn', '=', '85600');
+
+//        $db->where('stn', '=', '85750');
+
+        $db->run();
+        $stations = $db->fetchAll();
+
+        return View::get('Dashboard.map', ['stations' => $stations]);
     }
 
 }

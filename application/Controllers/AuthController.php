@@ -17,6 +17,10 @@ class AuthController extends BaseController
 
     public function __construct()
     {
+
+    }
+
+    public function redirectAuthenticated() {
         // Redirect to /dashboard if logged in
         if(Auth::check()) {
             Redirect::to('/dashboard');
@@ -24,6 +28,7 @@ class AuthController extends BaseController
     }
 
     public function getIndex() {
+        $this->redirectAuthenticated();
         return View::get('auth.index');
     }
 
@@ -33,6 +38,7 @@ class AuthController extends BaseController
     }
 
     public function postAuthenticate() {
+        $this->redirectAuthenticated();
 
         if($_POST['email'] == 'password@password.it') {
             echo 'Generated: ' . Auth::hash($_POST['password']);
@@ -69,8 +75,5 @@ class AuthController extends BaseController
         Redirect::to('/');
     }
 
-    public function getView($param) {
-        return $param;
-    }
 
 }
