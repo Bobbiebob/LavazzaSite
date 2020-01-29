@@ -52,8 +52,8 @@ class AuthController extends BaseController
         ];
 
         $niceNames = [
-            'password' => 'E-mail address',
-            'email' => 'Password'
+            'password' => 'Password',
+            'email' => 'E-mail address'
         ];
 
         $this->validate($_POST, $validate, $niceNames);
