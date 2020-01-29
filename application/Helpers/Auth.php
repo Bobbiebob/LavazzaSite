@@ -20,8 +20,6 @@ class Auth
             $data['email'] = strtolower($data['email']);
         }
 
-        var_dump($data);
-
         $db = new DB();
         $query = $db->select()
             ->table('users');

@@ -10,11 +10,18 @@ namespace Application\Routing;
 class Router
 {
 
+    public static function getURI() {
+        $uri = strtok($_SERVER["REQUEST_URI"],'?');
+        $uri = trim($uri, '/');
+
+        return $uri;
+    }
+
     public static function dispatch()
     {
-        $uri = $_SERVER['REQUEST_URI'];
+//        $uri = $_SERVER['REQUEST_URI'];
+        $uri = self::getURI();
 
-        $uri = trim($uri, '/');
         foreach ($GLOBALS['routes'][$_SERVER['REQUEST_METHOD']] as $route)
         {
             $regexPattern = '#^' . preg_replace('#{([\w-]+)}#', '(?P<$1>[\w-]+)', $route['uri']) . '$#';
