@@ -47,6 +47,18 @@
                                         <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?></option>
                                     <?php endforeach;?>
                                 </select>
+                                <p class="muted">Select one specific station to export measurements of.</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="timespan" class="col-4 col-form-label">Timespan</label>
+                            <div class="col-8">
+                                <select id="timespan" name="timespan" class="custom-select">
+                                    <?php foreach([50, 100, 150, 250, 500] as $amount): ?>
+                                        <option value="<?=$amount;?>">Last <?=$amount;?> most recent measurements</option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <p class="muted">Select the amount of measurements you like to export.</p>
                             </div>
                         </div>
                         <div class="form-group row">

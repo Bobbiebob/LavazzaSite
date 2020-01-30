@@ -45,17 +45,13 @@ class ExportController extends BaseController
         $station->addChild('elevation', $stationData['elevation']);
 
         // TODO: Use real array of measurements
+        $dataset = [];
+        for($i = 0; $i < $_POST['timespan']; $i++) {
+            $dataset[] = Measurement::getDummy(time()-($i*360));
+        }
 
         $measurements = $xml->addChild('measurements');
-        foreach([
-                    Measurement::getDummy(time()-(0*360)),
-                    Measurement::getDummy(time()-(1*360)),
-                    Measurement::getDummy(time()-(2*360)),
-                    Measurement::getDummy(time()-(3*360)),
-                    Measurement::getDummy(time()-(4*360)),
-                    Measurement::getDummy(time()-(5*360)),
-                    Measurement::getDummy(time()-(6*360))
-                ] as $data) {
+        foreach($dataset as $data) {
             $measurement = $measurements->addChild('measurement');
 
             $measurement->addChild('timestamp', $data->getTimestamp());
