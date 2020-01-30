@@ -107,7 +107,8 @@
 
 
         var table = $('.datatables#stations').DataTable({
-            "ajax": '/api/all_current_data'
+            "ajax": '/api/all_current_data',
+            "scrollX": false
         });
 
         // TODO: look into reloading without DT re-sorting

@@ -63,70 +63,28 @@
         </div>
 
         <div class="row">
-
-            <div class="col-md-12 mt-4">
+            <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Overview of all stations in Europe</h5>
+                        <h5>Rainfall</h5>
                     </div>
-
                     <div class="card-body">
-                        <p><strong>Filters</strong></p>
-                            <div class="form-group">
-                                <label for="query">Search</label>
-                                <input name="query" type="text" class="form-control" id="query" aria-describedby="query">
-                                <small class="form-text text-muted">Any column containing (part of) this value, will be shown.</small>
-                            </div>
-                        <p>Turn on/off the visibility of certain data</p>
-                            <form class="form-inline">
-                            <?php foreach([
-                                                'Location',
-                                                'Air Pressure station level',
-                                                'Air Pressure sea level',
-                                                'Dew Point',
-                                                'Temperature',
-                                                'Visibility',
-                                                'Wind Speed',
-                                                'Rainfall',
-                                                'Snowfall'
-                                          ] as $key => $column): ?>
-                            <?php if($key == 0)
-                                continue;
-                            ?>
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <input class="form-check-input form-check-inline toggle-column" checked type="checkbox" value="" data-column-id="<?=$key;?>" id="column-visibility-<?=$key;?>">
-                                    <label class="form-check-label" for="column-visibility-<?=$key;?>">
-                                        <?=$column;?>
-                                    </label>
-                                </div>
-                            <?php endforeach; ?>
-                            </form>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table datatables" id="stations">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Location </th>
-                                    <th scope="col">Air Pressure station level</th>
-                                    <th scope="col">Air Pressure sea level</th>
-                                    <th scope="col">Dew Point</th>
-                                    <th scope="col">Temperature</th>
-                                    <th scope="col">Visibility</th>
-                                    <th scope="col">Windspeed</th>
-                                    <th scope="col">Rainfall</th>
-                                    <th scope="col">Snowfall</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
+                        <canvas id="rainfallChart" width="100%" height="40%"></canvas>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6 mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Snowfall</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="snowfallChart" width="100%" height="40%"></canvas>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <?php include __DIR__ . '/../partials/footer.php'; ?>
@@ -222,24 +180,42 @@
             });
 
             $.get("/api/graph/" + stationId + "/visibility", function(data) {
-                // console.log(data);
-
                 rawData = JSON.parse(data).data;
                 data = []
                 $.each(rawData, function (key, value) {
-
-                    // console.log(value);
-
                     data.push({
                         x: new Date(value.x*1000),
                         y: value.y
                     });
                 });
-
                 window.visibilityChart.data.datasets[0].data = data;
-
                 window.visibilityChart.update();
+            });
 
+            $.get("/api/graph/" + stationId + "/snowfall", function(data) {
+                rawData = JSON.parse(data).data;
+                data = []
+                $.each(rawData, function (key, value) {
+                    data.push({
+                        x: new Date(value.x*1000),
+                        y: value.y
+                    });
+                });
+                window.snowfallChart.data.datasets[0].data = data;
+                window.snowfallChart.update();
+            });
+
+            $.get("/api/graph/" + stationId + "/rainfall", function(data) {
+                rawData = JSON.parse(data).data;
+                data = []
+                $.each(rawData, function (key, value) {
+                    data.push({
+                        x: new Date(value.x*1000),
+                        y: value.y
+                    });
+                });
+                window.rainfallChart.data.datasets[0].data = data;
+                window.rainfallChart.update();
             });
 
         }
@@ -342,6 +318,102 @@
                         scaleLabel: {
                             display: true,
                             labelString: 'Meters'
+                        }
+                    }]
+                }
+            }
+        });
+
+        window.rainfallChart = new Chart(document.getElementById('rainfallChart'),{
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Rainfall in millimeters',
+                    borderColor: "#B53471",
+                    fill: false,
+                    lineTension: 0.1,
+                    clip: {left: 5, top: true, right: -2, bottom: 0},
+                    data: [],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            displayFormats: {
+                                'millisecond': 'H:mm',
+                                'second': 'H:mm',
+                                'minute': 'H:mm',
+                                'hour': 'H:mm',
+                                'day': 'H:mm',
+                                'week': 'H:mm',
+                                'month': 'H:mm',
+                                'quarter': 'H:mm',
+                                'year': 'H:mm',
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            min: -5,
+                            max: 30,
+                            stepSize: 5
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Millimeters'
+                        }
+                    }]
+                }
+            }
+        });
+
+        window.snowfallChart = new Chart(document.getElementById('snowfallChart'),{
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Snowfall in millimeters',
+                    borderColor: "#B53471",
+                    fill: false,
+                    lineTension: 0.1,
+                    clip: {left: 5, top: true, right: -2, bottom: 0},
+                    data: [],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            displayFormats: {
+                                'millisecond': 'H:mm',
+                                'second': 'H:mm',
+                                'minute': 'H:mm',
+                                'hour': 'H:mm',
+                                'day': 'H:mm',
+                                'week': 'H:mm',
+                                'month': 'H:mm',
+                                'quarter': 'H:mm',
+                                'year': 'H:mm',
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            min: -5,
+                            max: 30,
+                            stepSize: 5
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Millimeters'
                         }
                     }]
                 }
