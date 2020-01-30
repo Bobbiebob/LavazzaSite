@@ -30,6 +30,33 @@
 
                     <p>Please select the data you would like to export and click the "Export" button.</p>
 
+                    <form action="/exporter/download" method="post">
+                        <div class="form-group row">
+                            <label for="select" class="col-4 col-form-label">Station</label>
+                            <div class="col-8">
+                                <select id="select" name="station" class="custom-select">
+                                    <option selected disabled>---- Select station ----</option>
+                                    <?php
+                                    $db = new \Application\Helpers\DB();
+                                    $query = $db->select()
+                                        ->table('stations')
+                                        ->run();
+                                    $stations = $query->fetchAll();
+                                    foreach($stations as $station):
+                                        ?>
+                                        <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="offset-4 col-8">
+                                <button name="submit" type="submit" class="btn btn-primary">Download</button>
+                            </div>
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>

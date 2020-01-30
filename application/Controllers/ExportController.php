@@ -9,13 +9,71 @@
 namespace Application\Controllers;
 
 
+use Application\Helpers\DB;
 use Application\Helpers\View;
+use Application\Models\Measurement;
+use SimpleXMLElement;
 
 class ExportController extends BaseController
 {
 
     public function getSelect() {
         return View::get('export.select');
+    }
+
+    public function postDownload() {
+
+        $xml = new SimpleXMLElement('<xml/>');
+
+//        $stationId = 62800;
+        $stationId = $_POST['station'];
+
+        /* Retrieve details on specific station, and add it to XML */
+        $db = new DB();
+        $query = $db->select()
+            ->table('stations')
+            ->where('stn', '=', $stationId)
+            ->run();
+
+        $stationData = $query->fetch();
+        $station = $xml->addChild('station');
+        $station->addChild('id', $stationData['stn']);
+        $station->addChild('name', $stationData['name']);
+        $station->addChild('country', $stationData['country']);
+        $station->addChild('latitude', $stationData['latitude']);
+        $station->addChild('longitude', $stationData['longitude']);
+        $station->addChild('elevation', $stationData['elevation']);
+
+        // TODO: Use real array of measurements
+
+        $measurements = $xml->addChild('measurements');
+        foreach([
+                    Measurement::getDummy(time()-(0*360)),
+                    Measurement::getDummy(time()-(1*360)),
+                    Measurement::getDummy(time()-(2*360)),
+                    Measurement::getDummy(time()-(3*360)),
+                    Measurement::getDummy(time()-(4*360)),
+                    Measurement::getDummy(time()-(5*360)),
+                    Measurement::getDummy(time()-(6*360))
+                ] as $data) {
+            $measurement = $measurements->addChild('measurement');
+
+            $measurement->addChild('timestamp', $data->getTimestamp());
+            $measurement->addChild('temperature', $data->getTemperature());
+            $measurement->addChild('dew_point', $data->getDewpoint());
+            $measurement->addChild('air_pressure_land', $data->getAirPressureLand());
+            $measurement->addChild('air_pressure_sea', $data->getAirPressureSea());
+            $measurement->addChild('visibility', $data->getVisibility());
+            $measurement->addChild('windspeed', $data->getWindspeed());
+            $measurement->addChild('rainfall', $data->getRainfall());
+            $measurement->addChild('snowfall', $data->getSnowfall());
+            $measurement->addChild('cloud_cover',  $data->getCloudCover());
+            $measurement->addChild('wind_direction', $data->getWindDirection());
+        }
+
+        header('Content-disposition: attachment; filename=export-' . $stationId . '.xml');
+        header('Content-type: text/xml');
+        return $xml->asXML();
     }
 
 }
