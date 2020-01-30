@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="offset-4 col-8">
-                                <button name="submit" type="submit" class="btn btn-primary">Download</button>
+                                <button name="submit" type="submit" class="btn btn-primary">Export</button>
                             </div>
                         </div>
                     </form>
