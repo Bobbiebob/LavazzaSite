@@ -152,6 +152,7 @@
 
         $('#station').change(function() {
             stationId = $(this).val();
+            getData();
         });
 
         function getData() {
@@ -221,9 +222,7 @@
         }
 
         getData();
-        setInterval(getData, 1000);
-
-
+        setInterval(getData, 10000);
 
         var ctx = document.getElementById('tempChart');
         var ctv = document.getElementById('visibilityChart');
