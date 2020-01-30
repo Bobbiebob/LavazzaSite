@@ -29,6 +29,10 @@ class DashboardController extends BaseController
         Redirect::to('/dashboard/europe');
     }
 
+    public function getColombia() {
+        return View::get('Dashboard.colombia');
+    }
+
     public function getEurope() {
         return View::get('Dashboard.dashboardChartJS');
     }

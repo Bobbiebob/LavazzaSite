@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69504e6f-d81c-4f6f-b8c8-5b27ecf44180" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/application/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/Controllers/AuthController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/Views/Dashboard/colombia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/Controllers/APIController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/Controllers/APIController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/Views/partials/styles.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/Views/partials/styles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/routes.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,25 +21,25 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="js" value="1" />
-          <entry key="php" value="25" />
+          <entry key="php" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JavaScript" value="1" />
-          <entry key="PHP" value="25" />
+          <entry key="PHP" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="php" value="6755" />
+          <entry key="php" value="7631" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="PHP" value="6754" />
+          <entry key="PHP" value="7630" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -44,10 +50,10 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -58,37 +64,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/map.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2625">
-              <caret line="175" column="4" selection-start-line="175" selection-start-column="4" selection-end-line="175" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Views/partials/footer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Controllers/ExportController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+            <state relative-caret-position="180">
+              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -97,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/application/Views/partials/javascript.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
-              <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+              <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -114,17 +93,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Helpers/Validator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-887">
+            <state relative-caret-position="840">
               <caret line="61" column="32" lean-forward="true" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Controllers/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
+            <state relative-caret-position="500">
+              <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
               <folding>
                 <element signature="e#41#70#0#PHP" expanded="true" />
               </folding>
@@ -135,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Views/partials/styles.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+            <state relative-caret-position="-844">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -144,8 +123,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="112" column="61" selection-start-line="112" selection-start-column="61" selection-end-line="112" selection-end-column="61" />
+            <state relative-caret-position="508">
+              <caret line="150" lean-forward="true" selection-end-line="351" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/colombia.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/Controllers/APIController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Controllers/DashboardController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+              <folding>
+                <element signature="e#6#83#0#PHP" expanded="true" />
+                <element signature="e#122#151#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,6 +185,9 @@
       <find>cursor=&quot;pointer&quot;</find>
       <find>has to be an email</find>
       <find>getFriendly</find>
+      <find>temperatureChart</find>
+      <find>tempChart</find>
+      <find>----</find>
     </findStrings>
     <replaceStrings>
       <replace>h:mm a</replace>
@@ -190,17 +203,18 @@
         <option value="$PROJECT_DIR$/application/Helpers/Auth.php" />
         <option value="$PROJECT_DIR$/application/Routing/Router.php" />
         <option value="$PROJECT_DIR$/application/Views/partials/navbar.php" />
-        <option value="$PROJECT_DIR$/application/routes.php" />
         <option value="$PROJECT_DIR$/application/Controllers/ExportController.php" />
-        <option value="$PROJECT_DIR$/application/Controllers/APIController.php" />
-        <option value="$PROJECT_DIR$/application/Controllers/DashboardController.php" />
-        <option value="$PROJECT_DIR$/application/Views/partials/styles.php" />
         <option value="$PROJECT_DIR$/application/Views/Dashboard/map.php" />
         <option value="$PROJECT_DIR$/application/Views/partials/footer.php" />
-        <option value="$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php" />
         <option value="$PROJECT_DIR$/application/Views/partials/javascript.php" />
         <option value="$PROJECT_DIR$/application/Views/export/select.php" />
         <option value="$PROJECT_DIR$/application/Controllers/AuthController.php" />
+        <option value="$PROJECT_DIR$/application/Views/partials/styles.php" />
+        <option value="$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php" />
+        <option value="$PROJECT_DIR$/application/routes.php" />
+        <option value="$PROJECT_DIR$/application/Controllers/DashboardController.php" />
+        <option value="$PROJECT_DIR$/application/Views/Dashboard/colombia.php" />
+        <option value="$PROJECT_DIR$/application/Controllers/APIController.php" />
       </list>
     </option>
   </component>
@@ -361,18 +375,19 @@
       <workItem from="1579695806223" duration="7496000" />
       <workItem from="1579728937023" duration="11700000" />
       <workItem from="1580288320360" duration="6698000" />
-      <workItem from="1580305101606" duration="30000" />
+      <workItem from="1580305101606" duration="630000" />
+      <workItem from="1580379827329" duration="2606000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15995000" />
+    <option name="totallyTimeSpent" value="19201000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="34" width="1920" height="970" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49881235" visible="true" weight="0.25773746" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49881235" visible="true" weight="0.26040554" />
       <window_info id="Structure" order="1" sideWeight="0.5011876" side_tool="true" weight="0.25506938" />
       <window_info id="Favorites" order="2" sideWeight="0.5011876" side_tool="true" weight="0.25506938" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -524,24 +539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Controllers/APIController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="134" selection-start-line="134" selection-end-line="134" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Controllers/DashboardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-          <folding>
-            <element signature="e#6#83#0#PHP" expanded="true" />
-            <element signature="e#122#151#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/map.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2625">
@@ -556,38 +553,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Controllers/ExportController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/Views/partials/javascript.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
-          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Views/partials/styles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="112" column="61" selection-start-line="112" selection-start-column="61" selection-end-line="112" selection-end-column="61" />
+          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -600,18 +576,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/Helpers/Validator.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-887">
+        <state relative-caret-position="840">
           <caret line="61" column="32" lean-forward="true" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/Controllers/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
+        <state relative-caret-position="500">
+          <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
           <folding>
             <element signature="e#41#70#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Views/partials/styles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-844">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/dashboardChartJS.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="150" lean-forward="true" selection-end-line="351" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Controllers/DashboardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+          <folding>
+            <element signature="e#6#83#0#PHP" expanded="true" />
+            <element signature="e#122#151#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Views/Dashboard/colombia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Controllers/APIController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
         </state>
       </provider>
     </entry>

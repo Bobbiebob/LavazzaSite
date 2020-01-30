@@ -15,6 +15,7 @@ Route::get('logout', 'AuthController@getLogout');
 Route::get('dashboard', 'DashboardController@getIndex');
 
 Route::get('dashboard/europe', 'DashboardController@getEurope');
+Route::get('dashboard/colombia', 'DashboardController@getColombia');
 Route::get('dashboard/map', 'DashboardController@getMap');
 
 Route::get('api/graph/{station}/{key}', 'APIController@getGraphData');
