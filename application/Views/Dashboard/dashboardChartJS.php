@@ -19,13 +19,32 @@
 
     <div class="container-fluid p-5">
         <div class="row">
+            <div class="col-md-3 offset-md-9">
+                <div class="form-group">
+                    <select id="station">
+                        <option selected disabled>---- Select station ----</option>
+                        <?php
+                            $db = new \Application\Helpers\DB();
+                            $query = $db->select()
+                            ->table('stations')
+                            ->run();
+                            $stations = $query->fetchAll();
+                            foreach($stations as $station):
+                        ?>
+                        <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
                         <h5>Temperature</h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="myChart" width="100%" height="40%"></canvas>
+                        <canvas id="tempChart" width="100%" height="40%"></canvas>
                     </div>
                 </div>
             </div>
@@ -33,10 +52,10 @@
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Todo</h5>
+                        <h5>Visibility</h5>
                     </div>
                     <div class="card-body">
-                        <p>Think of something great to do here...</p>
+                        <canvas id="visibilityChart" width="100%" height="40%"></canvas>
                     </div>
                 </div>
             </div>
@@ -112,6 +131,7 @@
 
         <?php include __DIR__ . '/../partials/footer.php'; ?>
 
+
     </div>
 
     <?php include __DIR__ . '/../partials/javascript.php'; ?>
@@ -122,8 +142,28 @@
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.6.0/sifter.min.js" integrity="sha256-OPRG6xXnYZSE3aI8usa7auAG9o9zHxiF3Cqy2iT5Itc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js" integrity="sha256-9UZrVQrjiOOmlikpy2EDDytjXQBC/f/iC9yG6dqCCR4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/selectize.min.js" integrity="sha256-zwkv+PhVN/CSaFNLrcQ/1vQd3vviSPiOEDvu2GxYxQc=" crossorigin="anonymous"></script>
+
     <script>
         $(document).ready( function () {
+
+            $('#station').selectize({
+                create: false,
+                sortField: 'text',
+                onDropdownOpen: function () {
+                    this.clear();
+                }
+                // persist: false
+            });
+
+            $("#station").on("click", function () {
+                console.log("CLEAR");
+                var selectize = $select[0].selectize;
+                selectize.clear();
+
+            });
 
             var table = $('.datatables#stations').DataTable({
                 "ajax": '/api/all_current_data'
@@ -150,8 +190,17 @@
             } );
         } );
 
+        var stationId = null;
+
+        $('#station').change(function() {
+            stationId = $(this).val();
+        });
+
         function getData() {
-            $.get("/api/graph/12912/temperature", function(data) {
+            if(stationId == null) {
+                return;
+            }
+            $.get("/api/graph/" + stationId + "/temperature", function(data) {
                 // console.log(data);
 
                 rawData = JSON.parse(data).data;
@@ -166,20 +215,44 @@
                     });
                 });
 
-                window.chart.data.datasets[0].data = data;
+                window.tempChart.data.datasets[0].data = data;
 
-                window.chart.update();
+                window.tempChart.update();
 
             });
+
+            $.get("/api/graph/" + stationId + "/visibility", function(data) {
+                // console.log(data);
+
+                rawData = JSON.parse(data).data;
+                data = []
+                $.each(rawData, function (key, value) {
+
+                    // console.log(value);
+
+                    data.push({
+                        x: new Date(value.x*1000),
+                        y: value.y
+                    });
+                });
+
+                window.visibilityChart.data.datasets[0].data = data;
+
+                window.visibilityChart.update();
+
+            });
+
         }
 
         getData();
         setInterval(getData, 1000);
 
-        var ctx = document.getElementById('myChart');
 
-        window.chart = new Chart(ctx,{
 
+        var ctx = document.getElementById('tempChart');
+        var ctv = document.getElementById('visibilityChart');
+
+        window.tempChart = new Chart(ctx,{
             type: 'line',
             data: {
                 datasets: [{
@@ -221,6 +294,54 @@
                         scaleLabel: {
                             display: true,
                             labelString: 'Degrees Celsius'
+                        }
+                    }]
+                }
+            }
+        });
+
+        window.visibilityChart = new Chart(ctv,{
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Visibility in meters',
+                    borderColor: "#B53471",
+                    fill: false,
+                    lineTension: 0.1,
+                    clip: {left: 5, top: true, right: -2, bottom: 0},
+                    data: [],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            displayFormats: {
+                                'millisecond': 'H:mm',
+                                'second': 'H:mm',
+                                'minute': 'H:mm',
+                                'hour': 'H:mm',
+                                'day': 'H:mm',
+                                'week': 'H:mm',
+                                'month': 'H:mm',
+                                'quarter': 'H:mm',
+                                'year': 'H:mm',
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            min: -5,
+                            max: 30,
+                            stepSize: 5
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Meters'
                         }
                     }]
                 }
