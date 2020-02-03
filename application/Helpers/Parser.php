@@ -5,51 +5,55 @@ namespace Application\Helpers;
 
 
 
+use Application\Models\Measurement;
+
 class Parser
 {
     public function __construct(){
     }
 
-    public static function readString()
+    private static function read_file($file, $lines)
     {
-        // full path to text file
-        define("TEXT_FILE", Config::get('stationFiles.path').'station');
-        // number of lines to read from the end of file
-        define("LINES_COUNT", Config::get('stationFiles.lines'));
-
-        function read_file($file, $lines)
-        {
-            $handle = fopen($file, "r");
-            $linecounter = $lines;
-            $pos = -2;
-            $beginning = false;
-            $text = array();
-            while ($linecounter > 0) {
-                $t = " ";
-                while ($t != "\n") {
-                    if (fseek($handle, $pos, SEEK_END) == -1) {
-                        $beginning = true;
-                        break;
-                    }
-                    $t = fgetc($handle);
-                    $pos--;
+        $handle = fopen($file, "r");
+        $lineCounter = $lines;
+        $pos = -2;
+        $beginning = false;
+        $text = array();
+        while ($lineCounter > 0) {
+            $t = " ";
+            while ($t != "\n") {
+                if (fseek($handle, $pos, SEEK_END) == -1) {
+                    $beginning = true;
+                    break;
                 }
-                $linecounter--;
-                if ($beginning) {
-                    rewind($handle);
-                }
-                $text[$lines - $linecounter - 1] = fgets($handle);
-                if ($beginning) break;
+                $t = fgetc($handle);
+                $pos--;
             }
-            fclose($handle);
-            return array_reverse($text);
+            $lineCounter--;
+            if ($beginning) {
+                rewind($handle);
+            }
+            $text[$lines - $lineCounter - 1] = fgets($handle);
+            if ($beginning) break;
         }
+        fclose($handle);
+        return array_reverse($text);
+    }
 
-        $lines = read_file(TEXT_FILE, LINES_COUNT);
+    public static function readString($fileLocation, $linesAmount)
+    {
+        $measurementArray = [];
+
+        $lines = self::read_file($fileLocation, $linesAmount);
         foreach ($lines as $line) {
             $date = bindec(substr($line, 0, 5));
             $time = bindec(substr($line, 5, 18));
-            $time = substr($time,0, 2).":".substr($time, 2, 2).":".substr($time, 4, 2);
+            if(strlen($time) < 8){
+                $time = "0".$time;
+            }
+            $time = substr($time,0, 2)."-".substr($time, 2, 2)."-".substr($time, 4, 2);
+            $dateTime = $date."-".$time;
+            $dateTime = date_create_from_format("j-H-i-s", $dateTime);
             $temperature = bindec(substr($line, 23, 11)) / 10 - 99.9;
             $dewPoint = bindec(substr($line, 34, 11)) / 10 - 99.9;
             $landPres = bindec(substr($line, 45, 11)) / 10 + 900;
@@ -66,6 +70,7 @@ class Parser
             $tornado = boolval(substr($line, 114, 1));
             $clouds = bindec(substr($line, 115, 7));
             $windDirection = substr($line, 122, 3);
+
             switch ($windDirection){
                 case "000":
                     $windDirection = "N";
@@ -92,7 +97,30 @@ class Parser
                     $windDirection = "NW";
                     break;
             }
+
+            $measurement = new Measurement();
+            $measurement->setTimestamp($dateTime);
+            $measurement->setTemperature($temperature);
+            $measurement->setDewPoint($dewPoint);
+            $measurement->setAirPressureLand($landPres);
+            $measurement->setAirPressureSea($seaPres);
+            $measurement->setVisibility($visibility);
+            $measurement->setWindspeed($windSpeed);
+            $measurement->setRainfall($rainfall);
+            $measurement->setSnowfall($snowfall);
+            $measurement->setFroze($froze);
+            $measurement->setRain($rain);
+            $measurement->setHail($hail);
+            $measurement->setSnow($snow);
+            $measurement->setThunder($thunder);
+            $measurement->setTornado($tornado);
+            $measurement->setCloudCover($clouds);
+            $measurement->setWindDirection($windDirection);
+
+            $measurementArray[] = $measurement;
         }
+
+        return $measurementArray;
     }
 
 }
