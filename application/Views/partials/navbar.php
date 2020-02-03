@@ -39,8 +39,7 @@
                     Bongiorno, <?=Application\Helpers\Auth::user()['first_name'];?>!
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Name</a>
-                    <a class="dropdown-item" href="#">Account settings</a>
+                    <a class="dropdown-item" href="/account">Account settings</a>
                     <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
             </li>

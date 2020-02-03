@@ -20,13 +20,6 @@ class AuthController extends BaseController
 
     }
 
-    public function redirectAuthenticated() {
-        // Redirect to /dashboard if logged in
-        if(Auth::check()) {
-            Redirect::to('/dashboard');
-        }
-    }
-
     public function getIndex() {
         $this->redirectAuthenticated();
         return View::get('auth.index');

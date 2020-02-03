@@ -33,7 +33,7 @@
         width: 100%;  /* This means "100% of the width of its container", the .col-md-8 */
     }
 
-    body.darkmode {
+    body.darkmode, .darkmode #loader {
         background: #222 !important;
     }
 

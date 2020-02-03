@@ -8,11 +8,6 @@
 <!--darkmode-toggle-->
 <script>
 
-    $(document).ready(function () {
-        $('#loader').fadeOut(1000);
-        $('body').css('overflow', 'auto');
-    });
-
     function darkMode() {
         var darkMode = localStorage.getItem('darkmode');
 
@@ -31,6 +26,11 @@
         }
     }
     darkMode();
+
+    $(document).ready(function () {
+        $('#loader').fadeOut(1000);
+        $('body').css('overflow', 'auto');
+    });
 
     $('.darkmode-toggle').change(function (event) {
         event.preventDefault();

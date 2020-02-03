@@ -27,3 +27,7 @@ Route::get('exporter/select', 'ExportController@getSelect');
 Route::post('exporter/download', 'ExportController@postDownload');
 
 Route::get('parserTest', 'ParserController@getView');
+
+Route::get('account', 'AccountController@getForm');
+Route::post('account/save', 'AccountController@postSave');
+Route::post('account/password', 'AccountController@postPassword');
