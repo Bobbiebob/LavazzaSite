@@ -132,27 +132,51 @@ class DashboardController extends BaseController
             67200, // SION
         ];
 
-        foreach($points as $point) {
-            $db->where('stn', '=', $point);
-        }
+//        foreach($points as $point) {
+//            $db->where('stn', '=', $point);
+//        }
+//
+//        /* Countries having relatively few monitors, so manual sampling is not required */
+//        $db->where('country', '=', 'ESTONIA');
+//        $db->where('country', '=', 'LATVIA');
+//        $db->where('country', '=', 'LITHUANIA');
+//        $db->where('country', '=', 'BELARUS');
+//        $db->where('country', '=', 'MOLDOVA');
+//        $db->where('country', '=', 'BULGARIA');
+//        $db->where('country', '=', 'CROATIA');
+//        $db->where('country', '=', 'POLAND');
+//
+//        $db->where('country', '=', 'NORWAY');
+//        $db->where('country', '=', 'SWEDEN');
+//        $db->where('country', '=', 'FINLAND');
+//
+//        $db->where('country', '=', 'UKRAINE');
+//        $db->where('country', '=', 'ROMANIA');
+//        $db->where('country', '=', 'HUNGARY');
+//        $db->where('country', '=', 'SLOVENIA');
+//
+//        $db->where('country', '=', 'AUSTRIA');
+//        $db->where('country', '=', 'CZECH REPUBLIC');
+//        $db->where('country', '=', 'GERMANY');
+//
+//        $db->where('country', '=', 'FRANCE');
+//        $db->where('country', '=', 'SPAIN');
+//
+//        $db->where('stn', '=', '10080');
+//        $db->where('stn', '=', '160590');
+//        $db->where('stn', '=', '103130');
+//        $db->where('stn', '=', '156091');
+//
+//        $db->where('stn', '=', '80001');
+//        $db->where('stn', '=', '85600');
 
-        /* Countries having relatively few monitors, so manual sampling is not required */
-        $db->where('country', '=', 'ESTONIA');
-        $db->where('country', '=', 'LATVIA');
-        $db->where('country', '=', 'LITHUANIA');
-        $db->where('country', '=', 'BELARUS');
-        $db->where('country', '=', 'MOLDOVA');
-        $db->where('country', '=', 'BULGARIA');
-        $db->where('country', '=', 'CROATIA');
-        $db->where('country', '=', 'POLAND');
+        $db->where('longitude','>', '-17.75');
+        $db->where('longitude','<', '45');
+        $db->where('latitude', '>', '33.567');
+        $db->where('latitude', '<', '80.167');
 
-        $db->where('stn', '=', '10080');
-        $db->where('stn', '=', '160590');
-        $db->where('stn', '=', '103130');
-        $db->where('stn', '=', '156091');
+        $db->whereOperator(DB::AND);
 
-        $db->where('stn', '=', '80001');
-        $db->where('stn', '=', '85600');
 
         $db->run();
         $stations = $db->fetchAll();

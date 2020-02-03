@@ -70,7 +70,7 @@
                                 <th scope="col">Dew Point</th>
                                 <th scope="col">Temperature</th>
                                 <th scope="col">Visibility</th>
-                                <th scope="col">Windspeed</th>
+                                <th scope="col">Wind</th>
                                 <th scope="col">Rainfall</th>
                                 <th scope="col">Snowfall</th>
                             </tr>
