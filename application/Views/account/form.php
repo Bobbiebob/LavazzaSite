@@ -53,16 +53,18 @@
                                 <input id="email" name="email" placeholder="E-mail address" type="text" class="form-control" required="required" value="<?=$user['email'];?>">
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label for="preferred_view" class="col-4 col-form-label">Default view</label>
+                            <label for="preferred_view" class="col-4 col-form-label">Role</label>
                             <div class="col-8">
                                 <select id="preferred_view" name="preferred_view" class="custom-select" required="required" aria-describedby="preferred_viewHelpBlock">
-                                    <option value="colombia" <?=($user['preferred_view'] == 'colombia' ? 'selected' : '');?>>Colombia</option>
-                                    <option value="europe" <?=($user['preferred_view'] == 'europe' ? 'selected' : '');?>>Europe</option>
+                                    <option value="colombia" <?=($user['preferred_view'] == 'colombia' ? 'selected' : '');?>>I am a farmer</option>
+                                    <option value="europe" <?=($user['preferred_view'] == 'europe' ? 'selected' : '');?>>I am a truck driver</option>
                                 </select>
-                                <span id="preferred_viewHelpBlock" class="form-text text-muted">This is the page that will open straight after signing in.</span>
+                                <span id="preferred_viewHelpBlock" class="form-text text-muted">Your role determines which view will open first. You can still switch using the links above.</span>
                             </div>
                         </div>
+
                         <!--                        <div class="form-group row">-->
                         <!--                            <label for="text3" class="col-4 col-form-label">Text Field</label>-->
                         <!--                            <div class="col-8">-->
