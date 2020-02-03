@@ -8,7 +8,7 @@
 
 return [
     'host' => '127.0.0.1',
-    'database' => 'unwdmi',
-    'username' => 'toor',
-    'password' => 'root'
+    'database' => 'lavazzaSite',
+    'username' => 'root',
+    'password' => ''
 ];
