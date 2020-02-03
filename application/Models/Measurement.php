@@ -21,6 +21,12 @@ class Measurement
     private $snowfall;
     private $cloud_cover;
     private $wind_direction;
+    private $froze;
+    private $rain;
+    private $snow;
+    private $hail;
+    private $thunder;
+    private $tornado;
 
     public static function getDummy($time = null) {
         $object = new Measurement();
@@ -41,6 +47,12 @@ class Measurement
         $object->setSnowfall((int) 0);
         $object->setCloudCover('CLOUDY');
         $object->setWindDirection('NW');
+        $object->setTornado(false);
+        $object->setThunder(false);
+        $object->setHail(false);
+        $object->setSnow(false);
+        $object->setRain(false);
+        $object->setFroze(false);
 
         return $object;
     }
@@ -222,5 +234,100 @@ class Measurement
     }
 
 
+    /**
+     * @return mixed
+     */
+    public function getFroze()
+    {
+        return $this->froze;
+    }
 
+    /**
+     * @param mixed $froze
+     */
+    public function setFroze($froze)
+    {
+        $this->froze = $froze;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTornado()
+    {
+        return $this->tornado;
+    }
+
+    /**
+     * @param mixed $tornado
+     */
+    public function setTornado($tornado)
+    {
+        $this->tornado = $tornado;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getRain()
+    {
+        return $this->rain;
+    }
+
+    /**
+     * @param mixed $rain
+     */
+    public function setRain($rain)
+    {
+        $this->rain = $rain;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSnow()
+    {
+        return $this->snow;
+    }
+
+    /**
+     * @param mixed $snow
+     */
+    public function setSnow($snow)
+    {
+        $this->snow = $snow;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHail()
+    {
+        return $this->hail;
+    }
+
+    /**
+     * @param mixed $hail
+     */
+    public function setHail($hail)
+    {
+        $this->hail = $hail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThunder()
+    {
+        return $this->thunder;
+    }
+
+    /**
+     * @param mixed $thunder
+     */
+    public function setThunder($thunder)
+    {
+        $this->thunder = $thunder;
+    }
 }
