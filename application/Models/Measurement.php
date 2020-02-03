@@ -21,6 +21,7 @@ class Measurement
     private $snowfall;
     private $cloud_cover;
     private $wind_direction;
+
     private $froze;
     private $rain;
     private $snow;

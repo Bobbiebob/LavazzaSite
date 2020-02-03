@@ -124,7 +124,7 @@ class APIController extends BaseController
 //        $db->where('country', '=', 'MOROCCO');
 //        $db->where('country', '=', 'ANDORRA');
 //
-//        $db->where('country', '=', 'COLOMBIA');
+        $db->where('country', '=', 'COLOMBIA');
 
         $query->run();
 
@@ -149,6 +149,11 @@ class APIController extends BaseController
                 $measurement->getWindspeed() . ' km/h @ ' . $measurement->getWindDirection(),
                 $measurement->getRainfall() . ' mm',
                 $measurement->getSnowfall() . ' mm',
+                ($measurement->getTornado() ? 'Yes' : 'No'),
+                ($measurement->getHail() ? 'Yes' : 'No'),
+                ($measurement->getSnow() ? 'Yes' : 'No'),
+                ($measurement->getRain() ? 'Yes' : 'No'),
+                ($measurement->getFroze() ? 'Yes' : 'No'),
             ];
 
             $data[] = $row;
