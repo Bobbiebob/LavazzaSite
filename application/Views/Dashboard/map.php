@@ -13,6 +13,8 @@
 
     <?php require __DIR__ . '/../partials/styles.php'; ?>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css" />
+
 
 </head>
 <body>
@@ -42,9 +44,37 @@
 <?php include __DIR__ . '/../partials/javascript.php'; ?>
 <!-- Leaflet map render -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js" integrity="sha256-fNoRrwkP2GuYPbNSJmMJOCyfRB2DhPQe0rGTgzRsyso=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js" integrity="sha256-WL6HHfYfbFEkZOFdsJQeY7lJG/E5airjvqbznghUzRw=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
     $(function() {
+
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        var redIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        var orangeIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
 
         var map = L.map('map').setView([48.987411, 13.752742], 5);
 
@@ -56,13 +86,30 @@
             id: 'mapbox.streets'
         }).addTo(map);
 
-        <?php foreach($stations as $station):
+        var markers = L.markerClusterGroup();
+
+    <?php foreach($stations as $station):
         $longitude = $station['longitude'];
         $latitude = $station['latitude']; ?>
-        L.marker([<?=$latitude;?>, <?=$longitude;?>])
-         .addTo(map)
-         .bindPopup("<?=$station['name'];?>, <?=$station['country'];?><br />#<?=$station['stn'];?>");
+
+
+        <?php
+        $rand = rand(0, 2);
+        if($rand == 0) {
+            $icon = 'greenIcon';
+        } else if($rand == 1) {
+            $icon = 'orangeIcon';
+        } else if($rand == 2) {
+            $icon = 'redIcon';
+        }
+        ?>
+
+        markers.addLayer(L.marker([<?=$latitude;?>, <?=$longitude;?>], {icon: <?=$icon;?>})
+            .bindPopup("<?=$station['name'];?>, <?=$station['country'];?><br />#<?=$station['stn'];?><br /><?=$station['longitude'];?>, <?=$station['latitude'];?>"));
         <?php endforeach; ?>
+
+        map.addLayer(markers);
+
 
     });
 

@@ -10,6 +10,7 @@ namespace Application\Controllers;
 
 
 use Application\Helpers\DB;
+use Application\Models\Measurement;
 
 class APIController extends BaseController
 {
@@ -136,16 +137,18 @@ class APIController extends BaseController
 
         foreach($query->fetchAll() as $station) {
             $countries[] = $station['country'];
+            // TODO: fetch real data based on station in question
+            $measurement = Measurement::getDummy();
             $row = [
                 $station['country'] . ', ' . $station['name'],
-                $fake . ' bar',
-                $fake . ' bar',
-                $fake . ' °C',
-                $fake . ' °C',
-                $fake . ' km',
-                $fake . ' km/h',
-                $fake . ' mm',
-                $fake . ' mm',
+                $measurement->getAirPressureLand() . ' bar',
+                $measurement->getAirPressureSea() . ' bar',
+                $measurement->getDewPoint() . ' °C',
+                $measurement->getTemperature() . ' °C',
+                $measurement->getVisibility() . ' km',
+                $measurement->getWindspeed() . ' km/h @ ' . $measurement->getWindDirection(),
+                $measurement->getRainfall() . ' mm',
+                $measurement->getSnowfall() . ' mm',
             ];
 
             $data[] = $row;
