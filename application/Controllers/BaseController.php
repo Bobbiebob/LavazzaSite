@@ -17,6 +17,13 @@ use Application\Helpers\Validator;
 class BaseController
 {
 
+    public function redirectAuthenticated() {
+        // Redirect to /dashboard if logged in
+        if(Auth::check()) {
+            Redirect::to('/dashboard');
+        }
+    }
+
     public function validate($input, $rules, $friendly = [])
     {
         $validator = Validator::make($input, $rules, $friendly);

@@ -26,7 +26,10 @@ class DashboardController extends BaseController
 //        echo 'Welcome, ' . Auth::user()['first_name'] . ' ' . Auth::user()['last_name'] . '!<br />';
 //        return 'You are logged in! <a href="/logout">Click here to log out</a>';
 //        return View::get('Dashboard.dashboardChartJS');
-        Redirect::to('/dashboard/europe');
+
+        $view = Auth::user()['preferred_view'];
+
+        Redirect::to('/dashboard/' . $view);
     }
 
     public function getColombia() {

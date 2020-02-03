@@ -19,11 +19,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/colombia' ? 'active' : '');?>" href="/dashboard/colombia">Data on Colombia</a>
+                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/colombia' ? 'active' : '');?>" href="/dashboard/colombia">Farmers in Colombia</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/europe' ? 'active' : '');?>" href="/dashboard/europe">Data on Europe</a>
+                <a class="nav-link <?=(\Application\Routing\Router::getURI() == 'dashboard/europe' ? 'active' : '');?>" href="/dashboard/europe">Truckers in Europe</a>
             </li>
 
             <li class="nav-item">
@@ -39,8 +39,7 @@
                     Bongiorno, <?=Application\Helpers\Auth::user()['first_name'];?>!
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Name</a>
-                    <a class="dropdown-item" href="#">Account settings</a>
+                    <a class="dropdown-item" href="/account">Account settings</a>
                     <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
             </li>

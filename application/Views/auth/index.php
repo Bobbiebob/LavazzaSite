@@ -14,7 +14,9 @@
 <body>
     <div class="container mt-2">
         <div class="row justify-content-center align-items-center text-center p-2">
-                <?php require __DIR__ . '/../partials/messages.php'; ?>
+                <div class="container">
+                    <?php require __DIR__ . '/../partials/messages.php'; ?>
+                </div>
         </div>
         <div class="row justify-content-center align-items-center text-center p-2">
             <div class="m-1 col-sm-8 col-md-6 col-lg-4 shadow-sm p-3 mb-5 border rounded bg-white">
@@ -25,7 +27,7 @@
                     <p class="text-center text-uppercase mt-3">Benvenuto! Accedere prego.</p>
                     <form class="form text-center" action="/" method="POST">
                         <div class="form-group input-group-md">
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" autofocus class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
                             <!--<div class="invalid-feedback">
                                  Errors in email during form validation, also add .is-invalid class to the input fields
                             </div> -->
