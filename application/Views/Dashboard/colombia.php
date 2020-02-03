@@ -65,19 +65,23 @@
                             <thead>
                             <tr>
                                 <th scope="col">Location </th>
-                                <th scope="col">Air Pressure station level</th>
-                                <th scope="col">Air Pressure sea level</th>
+                                <th scope="col">Atmospheric pressure (station)</th>
+                                <th scope="col">Atmospheric pressure (sea)</th>
                                 <th scope="col">Dew Point</th>
                                 <th scope="col">Temperature</th>
                                 <th scope="col">Visibility</th>
                                 <th scope="col">Wind</th>
                                 <th scope="col">Rainfall</th>
                                 <th scope="col">Snowfall</th>
+
+                                <th scope="col">Tornado?</th>
+                                <th scope="col">Hailing?</th>
+                                <th scope="col">Snowing?</th>
+                                <th scope="col">Raining?</th>
+                                <th scope="col">Freezing?</th>
                             </tr>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
