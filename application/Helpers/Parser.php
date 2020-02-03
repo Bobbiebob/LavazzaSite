@@ -56,20 +56,20 @@ class Parser
             $dateTime = date_create_from_format("j-H-i-s", $dateTime);
             $temperature = bindec(substr($line, 23, 11)) / 10 - 99.9;
             $dewPoint = bindec(substr($line, 34, 11)) / 10 - 99.9;
-            $landPres = bindec(substr($line, 45, 11)) / 10 + 900;
-            $seaPres = bindec(substr($line, 56, 11)) / 10 + 900;
-            $visibility = bindec(substr($line, 67, 10)) / 10;
-            $windSpeed = bindec(substr($line, 77, 4));
-            $rainfall = bindec(substr($line, 81, 14)) / 10;
-            $snowfall = bindec(substr($line, 95, 14)) / 10;
-            $froze = boolval(substr($line, 109, 1));
-            $rain = boolval(substr($line, 110, 1));
-            $snow = boolval(substr($line, 111, 1));
-            $hail = boolval(substr($line, 112, 1));
-            $thunder = boolval(substr($line, 113, 1));
-            $tornado = boolval(substr($line, 114, 1));
-            $clouds = bindec(substr($line, 115, 7));
-            $windDirection = substr($line, 122, 3);
+            $landPres = bindec(substr($line, 45, 12)) / 10 + 700;
+            $seaPres = bindec(substr($line, 57, 12)) / 10 + 700;
+            $visibility = bindec(substr($line, 69, 10)) / 10;
+            $windSpeed = bindec(substr($line, 79, 4));
+            $rainfall = bindec(substr($line, 83, 17)) / 100;
+            $snowfall = bindec(substr($line, 100, 14)) / 10;
+            $froze = boolval(substr($line, 114, 1));
+            $rain = boolval(substr($line, 115, 1));
+            $snow = boolval(substr($line, 116, 1));
+            $hail = boolval(substr($line, 117, 1));
+            $thunder = boolval(substr($line, 118, 1));
+            $tornado = boolval(substr($line, 119, 1));
+            $clouds = bindec(substr($line, 120, 7));
+            $windDirection = substr($line, 127, 3);
 
             switch ($windDirection){
                 case "000":
