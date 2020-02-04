@@ -9,6 +9,7 @@
 namespace Application\Controllers;
 
 
+use Application\Helpers\Config;
 use Application\Helpers\DB;
 use Application\Models\Measurement;
 
@@ -139,6 +140,27 @@ class APIController extends BaseController
             $countries[] = $station['country'];
             // TODO: fetch real data based on station in question
             $measurement = Measurement::getDummy();
+
+            $listSVG = "";
+            if($measurement->getTornado()){
+                $listSVG .= '<img src="\assets\images\Tornado.svg" height="30px" /> &nbsp;' ;
+            }
+            if($measurement->getThunder()){
+                $listSVG .= '<img src="\assets\images\Thunder.svg" height="30px" /> &nbsp;';
+            }
+            if($measurement->getHail()){
+                $listSVG .= '<img src="\assets\images\Hail.svg" height="30px" /> &nbsp;';
+            }
+            if($measurement->getRain()){
+                $listSVG .= '<img src="\assets\images\Rain.svg" height="30px" /> &nbsp;';
+            }
+            if($measurement->getSnow()){
+                $listSVG .= '<img src="\assets\images\Snowstorm.svg" height="30px" /> &nbsp;';
+            }
+            if($measurement->getFroze()){
+                $listSVG .= '<img src="\assets\images\Freezing.svg" height="30px" /> &nbsp;';
+            }
+
             $row = [
                 $station['country'] . ', ' . $station['name'],
                 $measurement->getAirPressureLand() . ' bar',
@@ -149,11 +171,7 @@ class APIController extends BaseController
                 $measurement->getWindspeed() . ' bft @ ' . $measurement->getWindDirection(),
                 $measurement->getRainfall() . ' mm',
                 $measurement->getSnowfall() . ' mm',
-                ($measurement->getTornado() ? 'Yes' : 'No'),
-                ($measurement->getHail() ? 'Yes' : 'No'),
-                ($measurement->getSnow() ? 'Yes' : 'No'),
-                ($measurement->getRain() ? 'Yes' : 'No'),
-                ($measurement->getFroze() ? 'Yes' : 'No'),
+                '<span style="white-space:nowrap">' . $listSVG . '</span>'
             ];
 
             $data[] = $row;

@@ -48,12 +48,12 @@ class Measurement
         $object->setSnowfall((int) 0);
         $object->setCloudCover('CLOUDY');
         $object->setWindDirection('NW');
-        $object->setTornado(false);
-        $object->setThunder(false);
-        $object->setHail(false);
-        $object->setSnow(false);
-        $object->setRain(false);
-        $object->setFroze(false);
+        $object->setTornado(true);
+        $object->setThunder(true);
+        $object->setHail(true);
+        $object->setSnow(true);
+        $object->setRain(true);
+        $object->setFroze(true);
 
         return $object;
     }

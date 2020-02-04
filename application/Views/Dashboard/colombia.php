@@ -45,11 +45,7 @@
                                       'Wind Speed',
                                       'Rainfall',
                                       'Snowfall',
-                                      'Tornado',
-                                      'Hailing',
-                                      'Snowing',
-                                      'Raining',
-                                      'Freezing'
+                                      'Icon'
                                       ] as $key => $column): ?>
                             <?php if($key == 0)
                                 continue;
@@ -81,12 +77,7 @@
                                 <th scope="col">Wind</th>
                                 <th scope="col">Rainfall</th>
                                 <th scope="col">Snowfall</th>
-
-                                <th scope="col">Tornado?</th>
-                                <th scope="col">Hailing?</th>
-                                <th scope="col">Snowing?</th>
-                                <th scope="col">Raining?</th>
-                                <th scope="col">Freezing?</th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody></tbody>
