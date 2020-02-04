@@ -53,7 +53,7 @@ class Parser
 //
 //}
 
-    function read_file($filepath, $lines, $adaptive = true) {
+    function read_file($filepath, $lines, $adaptive) {
 
         // Open file
         $f = @fopen($filepath, "r");
@@ -115,7 +115,7 @@ class Parser
         if(file_exists($fileLocation)){
             $measurementArray = [];
 
-            $lines = self::read_file($fileLocation, $linesAmount);
+            $lines = self::read_file($fileLocation, $linesAmount, true);
             foreach ($lines as $line) {
                 $date = bindec(substr($line, 0, 5));
                 $time = bindec(substr($line, 5, 18));
