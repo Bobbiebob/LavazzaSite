@@ -38,22 +38,22 @@ class Measurement
         }
 
         $object->setTimestamp($time);
-        $object->setTemperature((float) 19.3);
-        $object->setDewPoint((float) 5.6);
-        $object->setAirPressureLand((int) 100);
-        $object->setAirPressureSea((int) 50);
-        $object->setVisibility((int) 5);
-        $object->setWindspeed((int) 100);
-        $object->setRainfall((int) 5);
+        $object->setTemperature((float) 0);
+        $object->setDewPoint((float) 0);
+        $object->setAirPressureLand((int) 0);
+        $object->setAirPressureSea((int) 0);
+        $object->setVisibility((int) 0);
+        $object->setWindspeed((int) 0);
+        $object->setRainfall((int) 0);
         $object->setSnowfall((int) 0);
-        $object->setCloudCover('CLOUDY');
-        $object->setWindDirection('NW');
-        $object->setTornado(true);
-        $object->setThunder(true);
+        $object->setCloudCover('0');
+        $object->setWindDirection('0');
+        $object->setTornado(false);
+        $object->setThunder(false);
         $object->setHail(false);
         $object->setSnow(false);
-        $object->setRain(true);
-        $object->setFroze(true);
+        $object->setRain(false);
+        $object->setFroze(false);
 
         return $object;
     }

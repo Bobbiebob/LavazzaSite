@@ -11,7 +11,9 @@
 
     <title>Lavazza Weather App</title>
 
-    <?php require __DIR__ . '/../partials/styles.php'; ?>
+    <?php use Application\Helpers\Parser;
+
+    require __DIR__ . '/../partials/styles.php'; ?>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css" />
 
@@ -90,16 +92,17 @@
 
     <?php foreach($stations as $station):
         $longitude = $station['longitude'];
-        $latitude = $station['latitude']; ?>
+        $latitude = $station['latitude'];
+
+        $measurements = Application\Helpers\Parser::readString('/var/nfs/cloudstorage/' .$station['stn'], 1);
+        $measurement = $measurements[0];
 
 
-        <?php
-        $rand = rand(0, 2);
-        if($rand == 0) {
+        if($measurement->getVisibility() > 15) {
             $icon = 'greenIcon';
-        } else if($rand == 1) {
+        } else if($measurement->getVisibility() >= 5 && $measurement->getVisibility() <= 15) {
             $icon = 'orangeIcon';
-        } else if($rand == 2) {
+        } else if($measurement->getVisibility() <= 5) {
             $icon = 'redIcon';
         }
         ?>
