@@ -53,7 +53,7 @@ class Parser
 //
 //}
 
-    function read_file($filepath, $lines, $adaptive) {
+     private static function read_file($filepath, $lines, $adaptive) {
 
         // Open file
         $f = @fopen($filepath, "r");
