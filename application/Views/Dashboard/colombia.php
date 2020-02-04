@@ -36,15 +36,20 @@
                     <p>Turn on/off the visibility of certain data</p>
                     <form class="form-inline">
                         <?php foreach([
-                                          'Location',
-                                          'Air Pressure station level',
-                                          'Air Pressure sea level',
-                                          'Dew Point',
-                                          'Temperature',
-                                          'Visibility',
-                                          'Wind Speed',
-                                          'Rainfall',
-                                          'Snowfall'
+                                      'Location',
+                                      'Air Pressure station level',
+                                      'Air Pressure sea level',
+                                      'Dew Point',
+                                      'Temperature',
+                                      'Visibility',
+                                      'Wind Speed',
+                                      'Rainfall',
+                                      'Snowfall',
+                                      'Tornado',
+                                      'Hailing',
+                                      'Snowing',
+                                      'Raining',
+                                      'Freezing'
                                       ] as $key => $column): ?>
                             <?php if($key == 0)
                                 continue;
@@ -57,6 +62,9 @@
                             </div>
                         <?php endforeach; ?>
                     </form>
+                    <button id="refresh" class="btn btn-info btn-sm">
+                        Refresh
+                    </button>
                 </div>
 
                 <div class="card-body">
@@ -115,11 +123,6 @@
             "scrollX": false
         });
 
-        // TODO: look into reloading without DT re-sorting
-        // setInterval(function () {
-        //     table.ajax.reload();
-        // }, 10000);
-
         $("#query").on("change paste keyup", function(e) {
             e.preventDefault();
             var value = $(this).val();
@@ -134,6 +137,12 @@
             // column.visible( ! column.visible() );
             column.visible($(this).is(':checked'));
         } );
+
+        //refresh page table
+        $('#refresh').click(function (e) {
+            e.preventDefault();
+                table.ajax.reload();
+        });
     } );
 </script>
 </body>
