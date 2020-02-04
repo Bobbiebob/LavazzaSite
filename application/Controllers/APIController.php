@@ -57,7 +57,7 @@ class APIController extends BaseController
         foreach($query->fetchAll() as $station) {
             $countries[] = $station['country'];
             // TODO: fetch real data based on station in question
-            $measurement = Parser::readString($station, 1);
+            $measurement = Parser::readString('/var/nfs/cloudstorage/' .$station['stn'], 1);
             $measurement = $measurement[0];
 
             $listSVG = "";
