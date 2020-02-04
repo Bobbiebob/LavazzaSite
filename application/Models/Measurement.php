@@ -50,8 +50,8 @@ class Measurement
         $object->setWindDirection('NW');
         $object->setTornado(true);
         $object->setThunder(true);
-        $object->setHail(true);
-        $object->setSnow(true);
+        $object->setHail(false);
+        $object->setSnow(false);
         $object->setRain(true);
         $object->setFroze(true);
 

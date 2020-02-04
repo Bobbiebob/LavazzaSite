@@ -143,22 +143,22 @@ class APIController extends BaseController
 
             $listSVG = "";
             if($measurement->getTornado()){
-                $listSVG .= '<img src="\assets\images\Tornado.svg" height="30px" /> &nbsp;' ;
+                $listSVG .= '<img src="\assets\images\Tornado.svg" height="30px" title="There has been a tornado"/> &nbsp;' ;
             }
             if($measurement->getThunder()){
-                $listSVG .= '<img src="\assets\images\Thunder.svg" height="30px" /> &nbsp;';
+                $listSVG .= '<img src="\assets\images\Thunder.svg" height="30px" title="There has been thunderclouds"/> &nbsp;';
             }
             if($measurement->getHail()){
-                $listSVG .= '<img src="\assets\images\Hail.svg" height="30px" /> &nbsp;';
+                $listSVG .= '<img src="\assets\images\Hail.svg" height="30px" title="There has been hailclouds"/> &nbsp;';
             }
             if($measurement->getRain()){
-                $listSVG .= '<img src="\assets\images\Rain.svg" height="30px" /> &nbsp;';
+                $listSVG .= '<img src="\assets\images\Rain.svg" height="30px" title="There has been rainclouds"/> &nbsp;';
             }
             if($measurement->getSnow()){
-                $listSVG .= '<img src="\assets\images\Snowstorm.svg" height="30px" /> &nbsp;';
+                $listSVG .= '<img src="\assets\images\Snowstorm.svg" height="30px" title="There has been snowclouds"/> &nbsp;';
             }
             if($measurement->getFroze()){
-                $listSVG .= '<img src="\assets\images\Freezing.svg" height="30px" /> &nbsp;';
+                $listSVG .= '<img src="\assets\images\Freezing.svg" height="30px" title="It has frozen"/> &nbsp;';
             }
 
             $row = [
