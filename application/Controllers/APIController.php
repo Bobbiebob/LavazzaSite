@@ -146,7 +146,7 @@ class APIController extends BaseController
                 $measurement->getDewPoint() . ' °C',
                 $measurement->getTemperature() . ' °C',
                 $measurement->getVisibility() . ' km',
-                $measurement->getWindspeed() . ' km/h @ ' . $measurement->getWindDirection(),
+                $measurement->getWindspeed() . ' bft @ ' . $measurement->getWindDirection(),
                 $measurement->getRainfall() . ' mm',
                 $measurement->getSnowfall() . ' mm',
                 ($measurement->getTornado() ? 'Yes' : 'No'),
