@@ -39,7 +39,7 @@ class APIController extends BaseController
             }
 
             $data[] = [
-                'x' => round($measurement->getTimestamp()),
+                'x' => round($measurement->getTimestamp()->getTimestamp()),
                 'y' => $point
             ];
 
