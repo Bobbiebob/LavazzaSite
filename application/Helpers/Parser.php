@@ -18,10 +18,9 @@ class Parser
 
         $linecount = 0;
         while(!feof($handle)){
-            $line = fgets($handle);
+            $line = fgets($handle, 500);
             $linecount++;
         }
-        fclose($handle);
         if($linecount < $lines){
             $lineCounter = $linecount;
         }
