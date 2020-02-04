@@ -16,15 +16,16 @@ class Parser
     {
         $handle = fopen($file, "r");
 
-        $linecount = 0;
-        while(!feof($handle)){
-            $line = fgets($handle, 500);
-            $linecount++;
-        }
-        if($linecount < $lines){
-            $lineCounter = $linecount;
-        }
-        else $lineCounter = $lines;
+//        $linecount = 0;
+//        while(!feof($handle)){
+//            $line = fgets($handle, 500);
+//            $linecount++;
+//        }
+//        if($linecount < $lines){
+//            $lineCounter = $linecount;
+//        }
+//        else $lineCounter = $lines;
+        $lineCounter = $lines;
 
         $pos = -2;
         $beginning = false;
@@ -66,8 +67,8 @@ class Parser
                 $time = substr($time, 0, 2) . "-" . substr($time, 2, 2) . "-" . substr($time, 4, 2);
                 $dateTime = $date . "-" . $time;
                 $dateTime = date_create_from_format("j-H-i-s", $dateTime);
-                $temperature = bindec(substr($line, 23, 11)) / 10 - 99.9;
-                $dewPoint = bindec(substr($line, 34, 11)) / 10 - 99.9;
+                $temperature = round(bindec(substr($line, 23, 11)) / 10 - 99.9, 2);
+                $dewPoint = round(bindec(substr($line, 34, 11)) / 10 - 99.9, 2);
                 $landPres = bindec(substr($line, 45, 12)) / 10 + 700;
                 $seaPres = bindec(substr($line, 57, 12)) / 10 + 700;
                 $visibility = bindec(substr($line, 69, 10)) / 10;
