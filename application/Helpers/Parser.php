@@ -15,7 +15,18 @@ class Parser
     private static function read_file($file, $lines)
     {
         $handle = fopen($file, "r");
-        $lineCounter = $lines;
+
+        $linecount = 0;
+        while(!feof($handle)){
+            $line = fgets($handle);
+            $linecount++;
+        }
+        fclose($handle);
+        if($linecount < $lines){
+            $lineCounter = $linecount;
+        }
+        else $lineCounter = $lines;
+
         $pos = -2;
         $beginning = false;
         $text = array();
