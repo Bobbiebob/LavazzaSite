@@ -53,69 +53,60 @@ class Parser
 //
 //}
 
-     private static function read_file($filepath, $lines, $adaptive) {
+     private static function read_file($filename, $lines, $buffer = 4096)
+     {
+         // Open the file
+         $f = fopen($filename, "rb");
 
-        // Open file
-        $f = @fopen($filepath, "r");
-        if ($f === false) return false;
+         // Jump to last character
+         fseek($f, -1, SEEK_END);
 
-        // Sets buffer size, according to the number of lines to retrieve.
-        // This gives a performance boost when reading a few lines from the file.
-        if (!$adaptive) $buffer = 4096;
-        else $buffer = ($lines < 2 ? 64 : ($lines < 10 ? 512 : 4096));
+         // Read it and adjust line number if necessary
+         // (Otherwise the result would be wrong if file doesn't end with a blank line)
+         if(fread($f, 1) != "\n") $lines -= 1;
 
-        // Jump to last character
-        fseek($f, -1, SEEK_END);
+         // Start reading
+         $output = '';
+         $chunk = '';
 
-        // Read it and adjust line number if necessary
-        // (Otherwise the result would be wrong if file doesn't end with a blank line)
-        if (fread($f, 1) != "\n") $lines -= 1;
+         // While we would like more
+         while(ftell($f) > 0 && $lines >= 0)
+         {
+             // Figure out how far back we should jump
+             $seek = min(ftell($f), $buffer);
 
-        // Start reading
-        $output = '';
-        $chunk = '';
+             // Do the jump (backwards, relative to where we are)
+             fseek($f, -$seek, SEEK_CUR);
 
-        // While we would like more
-        while (ftell($f) > 0 && $lines >= 0) {
+             // Read a chunk and prepend it to our output
+             $output = ($chunk = fread($f, $seek)).$output;
 
-            // Figure out how far back we should jump
-            $seek = min(ftell($f), $buffer);
+             // Jump back to where we started reading
+             fseek($f, -mb_strlen($chunk, '8bit'), SEEK_CUR);
 
-            // Do the jump (backwards, relative to where we are)
-            fseek($f, -$seek, SEEK_CUR);
+             // Decrease our line counter
+             $lines -= substr_count($chunk, "\n");
+         }
 
-            // Read a chunk and prepend it to our output
-            $output = ($chunk = fread($f, $seek)) . $output;
+         // While we have too many lines
+         // (Because of buffer size we might have read too many)
+         while($lines++ < 0)
+         {
+             // Find first newline and remove all text before that
+             $output = substr($output, strpos($output, "\n") + 1);
+         }
 
-            // Jump back to where we started reading
-            fseek($f, -mb_strlen($chunk, '8bit'), SEEK_CUR);
-
-            // Decrease our line counter
-            $lines -= substr_count($chunk, "\n");
-
-        }
-
-        // While we have too many lines
-        // (Because of buffer size we might have read too many)
-        while ($lines++ < 0) {
-
-            // Find first newline and remove all text before that
-            $output = substr($output, strpos($output, "\n") + 1);
-
-        }
-
-        // Close file and return
-        fclose($f);
-        return $output;
-
-    }
+         // Close file and return
+         fclose($f);
+         return $output;
+     }
 
     public static function readString($fileLocation, $linesAmount)
     {
         if(file_exists($fileLocation)){
             $measurementArray = [];
 
-            $lines = self::read_file($fileLocation, $linesAmount, true);
+            $lines = self::read_file($fileLocation, $linesAmount);
             foreach ($lines as $line) {
                 $date = bindec(substr($line, 0, 5));
                 $time = bindec(substr($line, 5, 18));
