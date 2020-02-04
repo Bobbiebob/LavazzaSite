@@ -10,6 +10,7 @@ namespace Application\Controllers;
 
 
 use Application\Helpers\DB;
+use Application\Helpers\Parser;
 use Application\Helpers\View;
 use Application\Models\Measurement;
 use SimpleXMLElement;
@@ -47,7 +48,7 @@ class ExportController extends BaseController
         // TODO: Use real array of measurements
         $dataset = [];
         for($i = 0; $i < $_POST['timespan']; $i++) {
-            $dataset[] = Measurement::getDummy(time()-($i*360));
+            $dataset[] = Parser::readString('/var/nfs/cloudstorage/' .$station['stn'], 1);
         }
 
         $measurements = $xml->addChild('measurements');

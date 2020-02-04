@@ -17,25 +17,32 @@ class APIController extends BaseController
     public function getGraphData($station, $key)
     {
 
-        $datapoints = [
-            -1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4,-1,-2,-4,-5,-5,-4,-3,-2,-1,0,3,5,6,7,9,10,7,4
-        ];
+        $measurements = Parser::readString('/var/nfs/cloudstorage/' .$station, 100);
 
         $data = [];
-        $reference = time() - 14400;
-        foreach($datapoints as $point) {
-            $point = 15;
-            $diff = rand(1, 5);
-            if(rand(0, 1) == 1) {
-                $diff = $diff*-1;
+        foreach($measurements as $measurement) {
+
+            if ($key == 'visibility'){
+                $point = $measurement->getVisibility();
             }
-            $point = $point += $diff;
+
+            if($key == 'temperature'){
+                $point = $measurement->getTemperature();
+            }
+
+            if($key == 'rainfall'){
+                $point = $measurement->getRainfall();
+            }
+
+            if($key == 'snowfall'){
+                $point = $measurement->getSnowfall();
+            }
+
             $data[] = [
-                'x' => round($reference),
+                'x' => round($measurement->getTimestamp()),
                 'y' => $point
             ];
 
-            $reference += 60;
         }
 
         return json_encode(['data' => $data]);
