@@ -31,7 +31,7 @@
                             $stations = $query->fetchAll();
                             foreach($stations as $station):
                         ?>
-                        <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?></option>
+                        <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?>, #<?=$station['stn'];?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
