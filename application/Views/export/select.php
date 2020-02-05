@@ -37,14 +37,14 @@
                                 <select id="select" name="station" class="custom-select">
                                     <option selected disabled>---- Select station ----</option>
                                     <?php
-                                    $db = new \Application\Helpers\DB();
-                                    $query = $db->select()
-                                        ->table('stations')
-                                        ->run();
-                                    $stations = $query->fetchAll();
-                                    foreach($stations as $station):
-                                        ?>
-                                        <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?>, #<?=$station['stn'];?></option>
+                                        $db = new \Application\Helpers\DB();
+                                        $query = $db->select()
+                                            ->table('stations')
+                                            ->run();
+                                        $stations = $query->fetchAll();
+                                        foreach($stations as $station):
+                                    ?>
+                                    <option value="<?=$station['stn'];?>"><?=$station['country'];?>, <?=$station['name'];?>, #<?=$station['stn'];?></option>
                                     <?php endforeach;?>
                                 </select>
                                 <p class="muted">Select one specific station to export measurements of.</p>
