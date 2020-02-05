@@ -38,19 +38,19 @@
                         <div class="form-group row">
                             <label for="first_name" class="col-4 col-form-label">First name</label>
                             <div class="col-8">
-                                <input id="first_name" name="first_name" autofocus placeholder="First name" type="text" class="form-control" required="required" value="<?=$user['first_name'];?>">
+                                <input id="first_name" name="first_name" autofocus placeholder="First name" type="text" class="form-control" required="required" value="<?=htmlspecialchars($user['first_name']);?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="last_name" class="col-4 col-form-label">Last name</label>
                             <div class="col-8">
-                                <input id="last_name" name="last_name" placeholder="Last name" type="text" class="form-control" required="required" value="<?=$user['last_name'];?>">
+                                <input id="last_name" name="last_name" placeholder="Last name" type="text" class="form-control" required="required" value="<?=htmlspecialchars($user['last_name']);?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-4 col-form-label">E-mail address</label>
                             <div class="col-8">
-                                <input id="email" name="email" placeholder="E-mail address" type="text" class="form-control" required="required" value="<?=$user['email'];?>">
+                                <input id="email" name="email" placeholder="E-mail address" type="text" class="form-control" required="required" value="<?=htmlspecialchars($user['email']);?>">
                             </div>
                         </div>
 

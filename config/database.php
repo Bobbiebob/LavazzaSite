@@ -9,6 +9,6 @@
 return [
     'host' => '127.0.0.1',
     'database' => 'unwdmi',
-    'username' => 'unwdmi',
-    'password' => '9MWtLH9lEzX6c4VV'
+    'username' => 'toor',
+    'password' => 'root'
 ];
