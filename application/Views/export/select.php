@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <label for="select" class="col-4 col-form-label">Station</label>
                             <div class="col-8">
-                                <select id="select" name="station" class="custom-select">
+                                <select id="station" name="station">
                                     <option selected disabled>---- Select station ----</option>
                                     <?php
                                         $db = new \Application\Helpers\DB();
@@ -79,5 +79,29 @@
 </div>
 
 <?php include __DIR__ . '/../partials/javascript.php'; ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.6.0/sifter.min.js" integrity="sha256-OPRG6xXnYZSE3aI8usa7auAG9o9zHxiF3Cqy2iT5Itc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js" integrity="sha256-9UZrVQrjiOOmlikpy2EDDytjXQBC/f/iC9yG6dqCCR4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/selectize.min.js" integrity="sha256-zwkv+PhVN/CSaFNLrcQ/1vQd3vviSPiOEDvu2GxYxQc=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready( function () {
+
+            $('#station').selectize({
+                create: false,
+                sortField: 'text',
+                onDropdownOpen: function () {
+                    this.clear();
+                }
+                // persist: false
+            });
+
+            $("#station").on("click", function () {
+                console.log("CLEAR");
+                var selectize = $select[0].selectize;
+                selectize.clear();
+            });
+        } );
+    </script>
 </body>
 </html>
