@@ -262,8 +262,8 @@
                     yAxes: [{
                         display: true,
                         ticks: {
-                            min: -5,
-                            max: 30,
+                            min: -55,
+                            max: 55,
                             stepSize: 5
                         },
                         scaleLabel: {
@@ -279,7 +279,7 @@
             type: 'line',
             data: {
                 datasets: [{
-                    label: 'Visibility in meters',
+                    label: 'Visibility in km',
                     borderColor: "#B53471",
                     fill: false,
                     lineTension: 0.1,
@@ -310,13 +310,13 @@
                     yAxes: [{
                         display: true,
                         ticks: {
-                            min: -5,
-                            max: 30,
-                            stepSize: 5
+                            min: -0,
+                            max: 100,
+                            stepSize: 10
                         },
                         scaleLabel: {
                             display: true,
-                            labelString: 'Meters'
+                            labelString: 'Kilometers'
                         }
                     }]
                 }
@@ -358,9 +358,9 @@
                     yAxes: [{
                         display: true,
                         ticks: {
-                            min: -5,
-                            max: 30,
-                            stepSize: 5
+                            min: 0,
+                            max: 20,
+                            stepSize: 2
                         },
                         scaleLabel: {
                             display: true,
@@ -406,9 +406,9 @@
                     yAxes: [{
                         display: true,
                         ticks: {
-                            min: -5,
-                            max: 30,
-                            stepSize: 5
+                            min: 0,
+                            max: 20,
+                            stepSize: 2
                         },
                         scaleLabel: {
                             display: true,

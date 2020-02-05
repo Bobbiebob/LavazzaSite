@@ -8,6 +8,7 @@
 
 namespace Application\Controllers;
 
+use Application\Helpers\Config;
 use Application\Helpers\DB;
 use Application\Helpers\Parser;
 
@@ -17,7 +18,7 @@ class APIController extends BaseController
     public function getGraphData($station, $key)
     {
 
-        $measurements = Parser::readString('/var/nfs/cloudstorage/' .$station, 100);
+        $measurements = Parser::readString(Config::get('parser.path').$station['stn'], 1000);
 
         $data = [];
         foreach($measurements as $measurement) {
@@ -64,7 +65,7 @@ class APIController extends BaseController
         foreach($query->fetchAll() as $station) {
             $countries[] = $station['country'];
             // TODO: fetch real data based on station in question
-            $measurement = Parser::readString('/var/nfs/cloudstorage/' .$station['stn'], 1);
+            $measurement = Parser::readString(Config::get('parser.path').$station['stn'], 1);
             $measurement = $measurement[0];
 
             $listSVG = "";

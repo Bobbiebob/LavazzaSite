@@ -12,101 +12,55 @@ class Parser
     public function __construct(){
     }
 
-//    private static function read_file($file, $lines)
-//    {
-//        $handle = fopen($file, "r");
-//
-////        $linecount = 0;
-////        while(!feof($handle)){
-////            $line = fgets($handle, 500);
-////            $linecount++;
-////        }
-////        if($linecount < $lines){
-////            $lineCounter = $linecount;
-////        }
-////        else $lineCounter = $lines;
-//        $lineCounter = $lines;
-//
-//        $pos = -2;
-//        $beginning = false;
-//        $text = array();
-//        while ($lineCounter > 0) {
-//            $t = " ";
-//            while ($t != "\n") {
-//                if (fseek($handle, $pos, SEEK_END) == -1) {
-//                    $beginning = true;
-//                    break;
-//                }
-//                $t = fgetc($handle);
-//                $pos--;
-//            }
-//            $lineCounter--;
-//            if ($beginning) {
-//                rewind($handle);
-//            }
-//            $text[$lines - $lineCounter - 1] = fgets($handle);
-//            if ($beginning) break;
+    private static function read_file_old($file, $lines)
+    {
+        $handle = fopen($file, "r");
+
+//        $linecount = 0;
+//        while(!feof($handle)){
+//            $line = fgets($handle, 500);
+//            $linecount++;
 //        }
-//        fclose($handle);
-//        return array_reverse($text);
-//
-//
-//}
+//        if($linecount < $lines){
+//            $lineCounter = $linecount;
+//        }
+//        else $lineCounter = $lines;
+        $lineCounter = $lines;
 
-     private static function read_file($filename, $lines, $buffer = 4096)
-     {
-         // Open the file
-         $f = fopen($filename, "rb");
+        $pos = -2;
+        $beginning = false;
+        $text = array();
+        while ($lineCounter > 0) {
+            $t = " ";
+            while ($t != "\n") {
+                if (fseek($handle, $pos, SEEK_END) == -1) {
+                    $beginning = true;
+                    break;
+                }
+                $t = fgetc($handle);
+                $pos--;
+            }
+            $lineCounter--;
+            if ($beginning) {
+                rewind($handle);
+            }
+            $text[$lines - $lineCounter - 1] = fgets($handle);
+            if ($beginning) break;
+        }
+        fclose($handle);
+        return array_reverse($text);
 
-         // Jump to last character
-         fseek($f, -1, SEEK_END);
 
-         // Read it and adjust line number if necessary
-         // (Otherwise the result would be wrong if file doesn't end with a blank line)
-         if(fread($f, 1) != "\n") $lines -= 1;
-
-         // Start reading
-         $output = '';
-         $chunk = '';
-
-         // While we would like more
-         while(ftell($f) > 0 && $lines >= 0)
-         {
-             // Figure out how far back we should jump
-             $seek = min(ftell($f), $buffer);
-
-             // Do the jump (backwards, relative to where we are)
-             fseek($f, -$seek, SEEK_CUR);
-
-             // Read a chunk and prepend it to our output
-             $output = ($chunk = fread($f, $seek)).$output;
-
-             // Jump back to where we started reading
-             fseek($f, -mb_strlen($chunk, '8bit'), SEEK_CUR);
-
-             // Decrease our line counter
-             $lines -= substr_count($chunk, "\n");
-         }
-
-         // While we have too many lines
-         // (Because of buffer size we might have read too many)
-         while($lines++ < 0)
-         {
-             // Find first newline and remove all text before that
-             $output = substr($output, strpos($output, "\n") + 1);
-         }
-
-         // Close file and return
-         fclose($f);
-         return $output;
-     }
+}
 
     public static function readString($fileLocation, $linesAmount)
     {
+        $occurances = [];
+
         if(file_exists($fileLocation)){
             $measurementArray = [];
 
-            $lines = self::read_file($fileLocation, $linesAmount);
+            $lines = self::read_file_old($fileLocation, $linesAmount);
             foreach ($lines as $line) {
                 $date = bindec(substr($line, 0, 5));
                 $time = bindec(substr($line, 5, 18));
@@ -116,6 +70,12 @@ class Parser
                 $time = substr($time, 0, 2) . "-" . substr($time, 2, 2) . "-" . substr($time, 4, 2);
                 $dateTime = $date . "-" . $time;
                 $dateTime = date_create_from_format("j-H-i-s", $dateTime);
+
+                if(in_array($dateTime->getTimestamp(), $occurances)) {
+                    continue;
+                }
+                $occurances[] =  $dateTime->getTimestamp();
+
                 $temperature = round(bindec(substr($line, 23, 11)) / 10 - 99.9, 2);
                 $dewPoint = round(bindec(substr($line, 34, 11)) / 10 - 99.9, 2);
                 $landPres = bindec(substr($line, 45, 12)) / 10 + 700;
@@ -183,7 +143,6 @@ class Parser
             }
             return $measurementArray;
         }
-
 
         return [Measurement::getDummy()];
 
