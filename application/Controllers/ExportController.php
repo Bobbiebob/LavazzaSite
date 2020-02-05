@@ -13,7 +13,6 @@ use Application\Helpers\Config;
 use Application\Helpers\DB;
 use Application\Helpers\Parser;
 use Application\Helpers\View;
-use Application\Models\Measurement;
 use SimpleXMLElement;
 
 class ExportController extends BaseController
@@ -47,16 +46,14 @@ class ExportController extends BaseController
         $station->addChild('elevation', $stationData['elevation']);
 
         // TODO: Use real array of measurements
-        $dataset = [];
-        for($i = 0; $i < $_POST['timespan']; $i++) {
-            $dataset[] = Parser::readString(Config::get('parser.path').$stationData['stn'], 1);
-        }
+        $dataset = Parser::readString(Config::get('parser.path').$stationId, 1);
+
 
         $measurements = $xml->addChild('measurements');
         foreach($dataset as $data) {
             $measurement = $measurements->addChild('measurement');
 
-//            $measurement->addChild('timestamp', $data->getTimestamp()->getTimestamp());
+            $measurement->addChild('timestamp', $data->getTimestamp());
             $measurement->addChild('temperature', $data->getTemperature());
             $measurement->addChild('dew_point', $data->getDewpoint());
             $measurement->addChild('air_pressure_land', $data->getAirPressureLand());
