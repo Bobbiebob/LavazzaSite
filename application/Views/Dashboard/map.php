@@ -92,10 +92,16 @@
         var markers = L.markerClusterGroup();
 
     <?php foreach($stations as $station):
+            $path = Config::get('parser.path').$station['stn'];
         $longitude = $station['longitude'];
         $latitude = $station['latitude'];
 
-        $measurements = Application\Helpers\Parser::readString(Config::get('parser.path').$station['stn'], 1);
+        // Skip if no measurement data
+        if(!file_exists($path)) {
+            continue;
+        }
+
+        $measurements = Application\Helpers\Parser::readString($path, 1);
         $measurement = $measurements[0];
 
 
