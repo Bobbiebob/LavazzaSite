@@ -115,7 +115,7 @@
         ?>
 
         markers.addLayer(L.marker([<?=$latitude;?>, <?=$longitude;?>], {icon: <?=$icon;?>})
-            .bindPopup("<?=$station['name'];?>, <?=$station['country'];?><br />Visibility: <?=$measurement->getVisibility();?> km <br /> Elevation: <?=$station['elevation'];?> m"));
+            .bindPopup("<?=$station['name'];?>, <?=$station['country'];?><br />Visibility: <?=$measurement->getVisibility();?> km <br /> Elevation: <?=$station['elevation'];?> m <br /> Station number: <?=$station['stn'];?>"));
         <?php endforeach; ?>
 
         map.addLayer(markers);
