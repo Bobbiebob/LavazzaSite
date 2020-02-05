@@ -18,7 +18,7 @@ class APIController extends BaseController
     public function getGraphData($station, $key)
     {
 
-        $measurements = Parser::readString(Config::get('parser.path').$station['stn'], 1000);
+        $measurements = Parser::readString(Config::get('parser.path').$station, 1000);
 
         $data = [];
         foreach($measurements as $measurement) {
