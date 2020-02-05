@@ -64,7 +64,7 @@ class Parser
             foreach ($lines as $line) {
                 $date = bindec(substr($line, 0, 5));
                 $time = bindec(substr($line, 5, 18));
-                if (strlen($time) < 8) {
+                if (strlen($time) < 6) {
                     $time = "0" . $time;
                 }
                 $time = substr($time, 0, 2) . "-" . substr($time, 2, 2) . "-" . substr($time, 4, 2);
@@ -143,7 +143,6 @@ class Parser
             }
             return $measurementArray;
         }
-
         return [Measurement::getDummy()];
 
 
