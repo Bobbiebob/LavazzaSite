@@ -11,7 +11,8 @@
 
     <title>Lavazza Weather App</title>
 
-    <?php use Application\Helpers\Parser;
+    <?php use Application\Helpers\Config;
+    use Application\Helpers\Parser;
 
     require __DIR__ . '/../partials/styles.php'; ?>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
@@ -94,7 +95,7 @@
         $longitude = $station['longitude'];
         $latitude = $station['latitude'];
 
-        $measurements = Application\Helpers\Parser::readString('/var/nfs/cloudstorage/' .$station['stn'], 1);
+        $measurements = Application\Helpers\Parser::readString(Config::get('parser.path').$station['stn'], 1);
         $measurement = $measurements[0];
 
 
@@ -108,7 +109,7 @@
         ?>
 
         markers.addLayer(L.marker([<?=$latitude;?>, <?=$longitude;?>], {icon: <?=$icon;?>})
-            .bindPopup("<?=$station['name'];?>, <?=$station['country'];?><br />#<?=$station['stn'];?><br /><?=$station['longitude'];?>, <?=$station['latitude'];?>"));
+            .bindPopup("<?=$station['name'];?>, <?=$station['country'];?><br />Visibility: <?=$measurement->getVisibility();?> km"));
         <?php endforeach; ?>
 
         map.addLayer(markers);

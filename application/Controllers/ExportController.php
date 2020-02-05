@@ -9,6 +9,7 @@
 namespace Application\Controllers;
 
 
+use Application\Helpers\Config;
 use Application\Helpers\DB;
 use Application\Helpers\Parser;
 use Application\Helpers\View;
@@ -48,7 +49,7 @@ class ExportController extends BaseController
         // TODO: Use real array of measurements
         $dataset = [];
         for($i = 0; $i < $_POST['timespan']; $i++) {
-            $dataset[] = Parser::readString('/var/nfs/cloudstorage/' .$station['stn'], 1);
+            $dataset[] = Parser::readString(Config::get('parser.path').$station['stn'], 1);
         }
 
         $measurements = $xml->addChild('measurements');
