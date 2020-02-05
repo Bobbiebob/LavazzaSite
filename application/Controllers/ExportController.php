@@ -56,7 +56,7 @@ class ExportController extends BaseController
         foreach($dataset as $data) {
             $measurement = $measurements->addChild('measurement');
 
-            $measurement->addChild('timestamp', $data->getTimestamp());
+            $measurement->addChild('timestamp', $data->getTimestamp()->getTimestamp());
             $measurement->addChild('temperature', $data->getTemperature());
             $measurement->addChild('dew_point', $data->getDewpoint());
             $measurement->addChild('air_pressure_land', $data->getAirPressureLand());
