@@ -49,7 +49,7 @@ class ExportController extends BaseController
         // TODO: Use real array of measurements
         $dataset = [];
         for($i = 0; $i < $_POST['timespan']; $i++) {
-            $dataset[] = Parser::readString(Config::get('parser.path').$station['stn'], 1);
+            $dataset[] = Parser::readString(Config::get('parser.path').$stationData['stn'], 1);
         }
 
         $measurements = $xml->addChild('measurements');
