@@ -1,3 +1,4 @@
 .idea/*
 assets/stationFiles/*
+.htaccess
 config/*
