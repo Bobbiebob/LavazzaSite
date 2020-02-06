@@ -10,7 +10,7 @@ namespace Application\Models;
 class Measurement
 {
 
-    private $timestamp;
+    public $timestamp;
     private $temperature;
     private $dew_point;
     private $air_pressure_land;
@@ -28,6 +28,13 @@ class Measurement
     private $hail;
     private $thunder;
     private $tornado;
+
+    public function timestamp() {
+        if(!is_null($this->getTimestamp()) && !is_null($this->getTimestamp()->getTimestamp())) {
+            return $this->getTimestamp()->getTimestamp();
+        }
+        return 0;
+    }
 
     public static function getDummy($time = null) {
         $object = new Measurement();

@@ -24,10 +24,19 @@ class ExportController extends BaseController
 
     public function postDownload() {
 
-        $xml = new SimpleXMLElement('<xml/>');
+	$stationId = $_POST['station'];
 
-//        $stationId = 62800;
-        $stationId = $_POST['station'];
+	if(!is_numeric($_POST['timespan'])) {
+		echo 'Invalid timespan. Nice try..';
+		exit();
+	}
+	$timespan = $_POST['timespan'];
+        if(!file_exists(Config::get('parser.path').$stationId)) {
+                echo 'There is no data available for this station..';
+                exit();
+        }
+
+        $xml = new SimpleXMLElement('<xml/>');
 
         /* Retrieve details on specific station, and add it to XML */
         $db = new DB();
@@ -45,15 +54,12 @@ class ExportController extends BaseController
         $station->addChild('longitude', $stationData['longitude']);
         $station->addChild('elevation', $stationData['elevation']);
 
-        // TODO: Use real array of measurements
-        $dataset = Parser::readString(Config::get('parser.path').$stationId, 1);
-
+        $dataset = Parser::readString(Config::get('parser.path').$stationId, $timespan);
 
         $measurements = $xml->addChild('measurements');
         foreach($dataset as $data) {
             $measurement = $measurements->addChild('measurement');
-
-            $measurement->addChild('timestamp', ($data->getTimestamp()));
+            $measurement->addChild('timestamp', ($data->timestamp()));
             $measurement->addChild('temperature', $data->getTemperature());
             $measurement->addChild('dew_point', $data->getDewpoint());
             $measurement->addChild('air_pressure_land', $data->getAirPressureLand());
